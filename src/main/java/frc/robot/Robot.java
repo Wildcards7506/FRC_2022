@@ -17,6 +17,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.Subsystems.Climbers;
 import frc.robot.Subsystems.Drivetrain;
 import frc.robot.Subsystems.Intake;
+import frc.robot.Subsystems.Limelight;
 import frc.robot.Subsystems.Shooter;
 
 /**
@@ -53,6 +54,8 @@ public class Robot extends TimedRobot {
     Constants.LEFT_CLIMBER,
     Constants.RIGHT_CLIMBER
   );
+
+  public static final Limelight limelight = new Limelight();
 
   //Controllers
   public static final Controller controller1 = new Controller(Constants.DRIVER_CONTROLLER_1);
