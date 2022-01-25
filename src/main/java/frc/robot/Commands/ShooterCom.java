@@ -6,10 +6,10 @@ import frc.robot.Robot;
 
 public class ShooterCom extends CommandBase{
 
-    private boolean prev_controller2_buttonA = false;
-    private boolean prev_controller2_buttonB = false;
-    private boolean prev_controller2_buttonX = false;
-    private boolean prev_controller2_buttonY = false;
+    private boolean prev_controller1_buttonA = false;
+    private boolean prev_controller1_buttonB = false;
+    private boolean prev_controller1_buttonX = false;
+    private boolean prev_controller1_buttonY = false;
 
     public ShooterCom(){
         addRequirements(Robot.shooter);
@@ -22,30 +22,35 @@ public class ShooterCom extends CommandBase{
 
     @Override
     public void execute(){
-        boolean controller2_buttonA = Robot.controller2.getButton(Constants.BUTTON_A);
-        boolean controller2_buttonB = Robot.controller2.getButton(Constants.BUTTON_B);
-        boolean controller2_buttonX = Robot.controller2.getButton(Constants.BUTTON_C);
-        boolean controller2_buttonY = Robot.controller2.getButton(Constants.BUTTON_Y);
+        boolean controller1_buttonA = Robot.controller1.getButton(Constants.BUTTON_A);
+        boolean controller1_buttonB = Robot.controller1.getButton(Constants.BUTTON_B);
+        boolean controller1_buttonX = Robot.controller1.getButton(Constants.BUTTON_X);
+        boolean controller1_buttonY = Robot.controller1.getButton(Constants.BUTTON_Y);
         
         if(
-            controller2_buttonA != prev_controller2_buttonA ||
-            controller2_buttonB != prev_controller2_buttonB ||
-            controller2_buttonX != prev_controller2_buttonX ||
-            controller2_buttonY != prev_controller2_buttonY
+            controller1_buttonA != prev_controller1_buttonA ||
+            controller1_buttonB != prev_controller1_buttonB ||
+            controller1_buttonX != prev_controller1_buttonX ||
+            controller1_buttonY != prev_controller1_buttonY
         ){
+
+            prev_controller1_buttonA = controller1_buttonA;
+            prev_controller1_buttonB = controller1_buttonB;
+            prev_controller1_buttonX = controller1_buttonX;
+            prev_controller1_buttonY = controller1_buttonY;
+
             double speed;
-            if(controller2_buttonA == true){
+            if(controller1_buttonA == true){
                 speed = 1;
-            }else if(controller2_buttonB == true){
+            }else if(controller1_buttonB == true){
                 speed = .8;
-            }else if(controller2_buttonX == true){
+            }else if(controller1_buttonX == true){
                 speed = .6;
-            }else if(controller2_buttonY == true){
+            }else if(controller1_buttonY == true){
                 speed = .5;
             }else{
                 speed = Constants.STOP;
             }
-
             Robot.shooter.setShooterMotor(speed);
         }
     }

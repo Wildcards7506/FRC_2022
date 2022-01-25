@@ -12,17 +12,17 @@ public class Constants {
     public static final int RIGHT_CLIMBER = 16;
 
     //Shooter
-    public static final int SHOOTER = 2;
+    public static final int SHOOTER = 5;
 
     //Intake
-    public static final int VERTICAL_INTAKE = 5;
+    public static final int VERTICAL_INTAKE = 2;
     public static final int HORIZONTAL_INTAKE = 12;
     public static final int INTAKE_LIFT = 13;
 
     //Controller Assignments
-    public static final int DRIVER_CONTROLLER_1 = 0;
-    public static final int DRIVER_CONTROLLER_2 = 0;
-
+    public static final int DRIVER_CONTROLLER_0 = 0;
+    public static final int DRIVER_CONTROLLER_1 = 1;
+    
     //Control Axis
     public static final int LEFT_STICK_X = 0;
     public static final int LEFT_STICK_Y = 1;
@@ -38,10 +38,14 @@ public class Constants {
     //Control Buttons
     public static final int BUTTON_A = 1;
     public static final int BUTTON_B = 2;
-    public static final int BUTTON_C = 3;
+    public static final int BUTTON_X = 3;
     public static final int BUTTON_Y = 4;
     public static final int LEFT_BUMPER = 5;
     public static final int RIGHT_BUMPER = 6;
+    public static final int BUTTON_BACK = 7;
+    public static final int BUTTON_START = 8;
+    public static final int LEFT_JOYSTICK_BUTTON = 9;
+    public static final int RIGHT_JOYSTICK_BUTTON = 10;
 
     //Speed Variables
     public static final double MAX_DRIVE_SPEED = 1; // Min = 0, Max = 1

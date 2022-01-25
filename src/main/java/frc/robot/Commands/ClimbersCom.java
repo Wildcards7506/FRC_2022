@@ -6,8 +6,8 @@ import frc.robot.Robot;
 
 public class ClimbersCom extends CommandBase{
 
-    private double prev_controller2_leftJoystickY = 0;
-    private double prev_controller2_rightJoystickY = 0;
+    private double prev_controller1_leftJoystickY = 0;
+    private double prev_controller1_rightJoystickY = 0;
 
     public ClimbersCom(){
         addRequirements(Robot.climbers);
@@ -23,17 +23,17 @@ public class ClimbersCom extends CommandBase{
         double leftSpeed = 0;
         double rightSpeed = 0;
         
-        double controller2_leftJoystickY = Robot.controller2.getJoystickAxis(Constants.LEFT_STICK_Y);
-        double controller2_rightJoystickY = Robot.controller2.getJoystickAxis(Constants.RIGHT_STICK_Y);
+        double controller1_leftJoystickY = Robot.controller1.getJoystickAxis(Constants.LEFT_STICK_Y);
+        double controller1_rightJoystickY = Robot.controller1.getJoystickAxis(Constants.RIGHT_STICK_Y);
 
-        if(controller2_leftJoystickY != prev_controller2_leftJoystickY || 
-           controller2_rightJoystickY != prev_controller2_rightJoystickY){
+        if(controller1_leftJoystickY != prev_controller1_leftJoystickY || 
+           controller1_rightJoystickY != prev_controller1_rightJoystickY){
                 
-            prev_controller2_leftJoystickY = controller2_leftJoystickY;
-            prev_controller2_rightJoystickY = controller2_rightJoystickY;
+            prev_controller1_leftJoystickY = controller1_leftJoystickY;
+            prev_controller1_rightJoystickY = controller1_rightJoystickY;
             
-            leftSpeed = controller2_leftJoystickY;
-            rightSpeed = controller2_rightJoystickY;
+            leftSpeed = controller1_leftJoystickY;
+            rightSpeed = controller1_rightJoystickY;
 
             Robot.climbers.setLeftClimber(leftSpeed);
             Robot.climbers.setRightClimber(rightSpeed);

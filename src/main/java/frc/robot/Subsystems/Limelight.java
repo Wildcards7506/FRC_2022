@@ -1,9 +1,9 @@
 package frc.robot.Subsystems;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
-
+import frc.robot.Commands.LimelightCom;
 /* LimeLight specific Imports*/
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+//import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.networktables.NetworkTableInstance;
@@ -15,38 +15,23 @@ public class Limelight extends SubsystemBase {
     public static final double kDistancePerPulse = kDistancePerRevolution / kPulsesPerRevolution;
 
     // Creates a new LimeLight.
-    NetworkTable table;
-    NetworkTableEntry tx;
-    NetworkTableEntry ty;
-    NetworkTableEntry ta;
-    NetworkTableEntry tv;
-    double txDouble;
-    NetworkTableEntry ledMode;
+    private NetworkTable table;
+    private NetworkTableEntry tx;
+    // private NetworkTableEntry ty;
+    private NetworkTableEntry ta;
+    private NetworkTableEntry tv;
+    // private NetworkTableEntry ledMode;
 
     public void updateData() {
         // update table, then update from updated table
         table = NetworkTableInstance.getDefault().getTable("limelight");
         tx = table.getEntry("tx");
-        ty = table.getEntry("ty");
         ta = table.getEntry("ta");
         tv = table.getEntry("tv");
-        txDouble = tx.getDouble(0.0);
-        ledMode = table.getEntry("ledMode");
-
-        // read values periodically
-        double limeV = tv.getDouble(0.0);
-        double limeX = tx.getDouble(0.0);
-        double limeY = ty.getDouble(0.0);
-        double limeArea = ta.getDouble(0.0);
-
-        SmartDashboard.putNumber("Detection", limeV);
-        SmartDashboard.putNumber("LimelightX", limeX);
-        SmartDashboard.putNumber("LimelightY", limeY);
-        SmartDashboard.putNumber("LimelightArea", limeArea);
     }
 
     public double getTX() {
-        return txDouble;
+        return tx.getDouble(0.0);
     }
 
     public double getTA() {
@@ -57,9 +42,14 @@ public class Limelight extends SubsystemBase {
         return tv.getDouble(0.0);
     }
 
+    public void switchCameraMode(){
+        table.getEntry("camMode").setNumber(table.getEntry("camMode").getDouble(0.0) == 0 ? 1 : 0);
+        // table.getEntry("camMode").setNumber(1);
+    }
+
     @Override
     public void periodic() {
-        updateData();
+        setDefaultCommand(new LimelightCom());
         // This method will be called once per scheduler run
     }
 }

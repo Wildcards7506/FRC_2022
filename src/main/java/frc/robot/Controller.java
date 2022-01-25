@@ -3,32 +3,27 @@ package frc.robot;
 import edu.wpi.first.wpilibj.XboxController;
 
 public class Controller {
-    private static XboxController controller;
+    private XboxController xboxController;
 
-    public Controller(int controllerNumber) {
-        controller = new XboxController(controllerNumber);
+    public Controller(int controller) {
+        xboxController = new XboxController(controller);
     }
 
     public boolean getTrigger(int triggerNumber) {
-        double trigger = controller.getRawAxis(triggerNumber);
-        if(trigger > -.25)
-            return false;
-        return true;
+        boolean trigger = (xboxController.getRawAxis(triggerNumber) < .25) ? false : true;
+        return trigger;
     }
 
     public double getJoystickAxis(int axisNumber) {
-        double joystick = controller.getRawAxis(axisNumber);
-        if(Math.abs(joystick) < .1){
-            return 0;
-        }
+        double joystick = (Math.abs(xboxController.getRawAxis(axisNumber)) < .1) ? 0 : xboxController.getRawAxis(axisNumber);
         return joystick;
     }
 
     public boolean getButton(int buttonNumber) {
-        return controller.getRawButton(buttonNumber);
+        return xboxController.getRawButton(buttonNumber);
     }
 
     public int getPOV(){
-        return controller.getPOV();
+        return xboxController.getPOV();
     }
 }

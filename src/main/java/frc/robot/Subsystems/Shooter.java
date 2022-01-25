@@ -1,15 +1,17 @@
 package frc.robot.Subsystems;
 
-import edu.wpi.first.wpilibj.PWMSparkMax;
+import com.revrobotics.CANSparkMax;
+import com.revrobotics.CANSparkMaxLowLevel.MotorType;
+
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 import frc.robot.Commands.ShooterCom;
 
 public class Shooter extends SubsystemBase{
-    private PWMSparkMax shooter;
+    private static CANSparkMax shooter;
 
     public Shooter(int shoot){
-        shooter = new PWMSparkMax(shoot);
+        shooter = new CANSparkMax(shoot, MotorType.kBrushless);
     }
 
     public void setShooterMotor(double speed){

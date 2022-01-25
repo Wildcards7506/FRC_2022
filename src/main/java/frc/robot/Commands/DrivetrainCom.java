@@ -6,8 +6,8 @@ import frc.robot.Robot;
 
 public class DrivetrainCom extends CommandBase{
     
-    private double prev_controller1_rightStickX = 0;
-    private double prev_controller1_leftStickY = 0;
+    private double prev_controller0_rightStickX = 0;
+    private double prev_controller0_leftStickY = 0;
 
     public DrivetrainCom() {
         addRequirements(Robot.drivetrain);
@@ -21,14 +21,18 @@ public class DrivetrainCom extends CommandBase{
     @Override
     public void execute(){
         //Get joystick values
-        double controller1_rightStickX = Robot.controller1.getJoystickAxis(Constants.RIGHT_STICK_X);
-        double controller1_leftStickY = Robot.controller1.getJoystickAxis(Constants.LEFT_STICK_Y);
+        double controller0_rightStickX = Robot.controller0.getJoystickAxis(Constants.RIGHT_STICK_X);
+        double controller0_leftStickY = Robot.controller0.getJoystickAxis(Constants.LEFT_STICK_Y);
 
-        if(controller1_rightStickX != prev_controller1_rightStickX ||
-           controller1_leftStickY != prev_controller1_leftStickY){
+        if(controller0_rightStickX != prev_controller0_rightStickX ||
+           controller0_leftStickY != prev_controller0_leftStickY){
+               
+            prev_controller0_rightStickX = controller0_rightStickX;
+            prev_controller0_leftStickY = controller0_leftStickY;
+
             //Calculate values to set motors
-            double leftMotorSet = ((controller1_leftStickY - (Constants.LEFT_RIGHT_TRIM + (controller1_rightStickX * Constants.MAX_TURN_SPEED))) * Constants.MAX_DRIVE_SPEED);
-            double rightMotorSet = ((controller1_leftStickY + (Constants.LEFT_RIGHT_TRIM + (controller1_rightStickX * Constants.MAX_TURN_SPEED))) * Constants.MAX_DRIVE_SPEED);
+            double leftMotorSet = ((controller0_leftStickY - (Constants.LEFT_RIGHT_TRIM + (controller0_rightStickX * Constants.MAX_TURN_SPEED))) * Constants.MAX_DRIVE_SPEED);
+            double rightMotorSet = ((controller0_leftStickY + (Constants.LEFT_RIGHT_TRIM + (controller0_rightStickX * Constants.MAX_TURN_SPEED))) * Constants.MAX_DRIVE_SPEED);
 
             //Set motors
             Robot.drivetrain.setLeftDrivetrain(leftMotorSet);

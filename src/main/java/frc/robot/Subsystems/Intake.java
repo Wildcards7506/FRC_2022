@@ -13,7 +13,7 @@ public class Intake extends SubsystemBase{
     private VictorSPX intakeLift;
     private VictorSPX verticalIntake;
 
-    public Intake (int vertIntake, int horIntake, int inLift) {
+    public Intake (int horIntake, int vertIntake, int inLift) {
         horizontalIntake = new VictorSPX(horIntake);
         verticalIntake = new VictorSPX(vertIntake);
         intakeLift = new VictorSPX(inLift);
