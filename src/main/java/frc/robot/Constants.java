@@ -2,14 +2,18 @@ package frc.robot;
 
 public class Constants {
     //Drivetrain
-    public static final int LEFT_DRIVE_TRAIN_1 = 3;
-    public static final int LEFT_DRIVE_TRAIN_2 = 4;
-    public static final int RIGHT_DRIVE_TRAIN_1 = 14;
-    public static final int RIGHT_DRIVE_TRAIN_2 = 15;
+    public static final int LEFT_DRIVE_TRAIN_0 = 3;
+    public static final int LEFT_DRIVE_TRAIN_1 = 4;
+    public static final int RIGHT_DRIVE_TRAIN_0 = 14;
+    public static final int RIGHT_DRIVE_TRAIN_1 = 15;
 
     //Climbers
-    public static final int LEFT_CLIMBER = 1;
-    public static final int RIGHT_CLIMBER = 16;
+    public static final int LEFT_CLIMBER_0 = 1;
+    public static final int LEFT_CLIMBER_1 = 2;
+    public static final int LEFT_CLIMBER_ROTATE = 3;
+    public static final int RIGHT_CLIMBER_0 = 16;
+    public static final int RIGHT_CLIMBER_1 = 17;
+    public static final int RIGHT_CLIMBER_ROTATE = 18;
 
     //Shooter
     public static final int SHOOTER = 5;
@@ -48,7 +52,10 @@ public class Constants {
     public static final int RIGHT_JOYSTICK_BUTTON = 10;
 
     //Speed Variables
-    public static final double MAX_DRIVE_SPEED = 1; // Min = 0, Max = 1
+    public static final double MAX_DRIVE_SPEED = .7; // Min = 0, Max = 1
+    public static final double FULL_SPEED = 1;
+    public static final double SLOW_SPEED = .4;
+    public static final double CLIMBER_ROTATION_SPEED = .5;
     public static final double MAX_TURN_SPEED = 1; // Min = 0, Max = 1;
     public static final double LEFT_RIGHT_TRIM = 0; // Min = -1, Max = 1;
     public static final int STOP = 0;

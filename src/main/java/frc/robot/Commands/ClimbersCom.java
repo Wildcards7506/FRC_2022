@@ -12,17 +12,9 @@ public class ClimbersCom extends CommandBase{
     public ClimbersCom(){
         addRequirements(Robot.climbers);
     }
-    
-    @Override
-    public void initialize(){
-
-    }
 
     @Override
-    public void execute(){
-        double leftSpeed = 0;
-        double rightSpeed = 0;
-        
+    public void execute(){        
         double controller1_leftJoystickY = Robot.controller1.getJoystickAxis(Constants.LEFT_STICK_Y);
         double controller1_rightJoystickY = Robot.controller1.getJoystickAxis(Constants.RIGHT_STICK_Y);
 
@@ -31,17 +23,10 @@ public class ClimbersCom extends CommandBase{
                 
             prev_controller1_leftJoystickY = controller1_leftJoystickY;
             prev_controller1_rightJoystickY = controller1_rightJoystickY;
-            
-            leftSpeed = controller1_leftJoystickY;
-            rightSpeed = controller1_rightJoystickY;
 
-            Robot.climbers.setLeftClimber(leftSpeed);
-            Robot.climbers.setRightClimber(rightSpeed);
+            Robot.climbers.setLeftClimber(controller1_leftJoystickY);
+            Robot.climbers.setRightClimber(controller1_rightJoystickY);
+            Robot.climbers.setClimberRotation(Robot.controller1.getTrigger(Constants.LEFT_TRIGGER) ? Constants.CLIMBER_ROTATION_SPEED : (Robot.controller1.getTrigger(Constants.LEFT_TRIGGER) ? -Constants.CLIMBER_ROTATION_SPEED : 0));
         }
-    }
-
-    @Override
-    public void end(boolean interrupted){
-
     }
 }

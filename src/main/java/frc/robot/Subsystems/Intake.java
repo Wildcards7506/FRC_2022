@@ -4,7 +4,6 @@ import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
-import frc.robot.Constants;
 import frc.robot.Commands.IntakeCom;
 
 public class Intake extends SubsystemBase{
@@ -29,12 +28,6 @@ public class Intake extends SubsystemBase{
 
     public void setIntakeLift(double speed){
         intakeLift.set(ControlMode.PercentOutput, speed);
-    }
-
-    public void stop(){
-        horizontalIntake.set(ControlMode.PercentOutput, Constants.STOP);
-        verticalIntake.set(ControlMode.PercentOutput, Constants.STOP);
-        intakeLift.set(ControlMode.PercentOutput, Constants.STOP);
     }
 
     @Override

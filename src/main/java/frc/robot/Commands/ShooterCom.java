@@ -39,24 +39,17 @@ public class ShooterCom extends CommandBase{
             prev_controller1_buttonX = controller1_buttonX;
             prev_controller1_buttonY = controller1_buttonY;
 
-            double speed;
             if(controller1_buttonA == true){
-                speed = 1;
+                Robot.shooter.setShooterMotor(1);
             }else if(controller1_buttonB == true){
-                speed = .8;
+                Robot.shooter.setShooterMotor(.8);
             }else if(controller1_buttonX == true){
-                speed = .6;
+                Robot.shooter.setShooterMotor(.6);
             }else if(controller1_buttonY == true){
-                speed = .5;
+                Robot.shooter.setShooterMotor(.5);
             }else{
-                speed = Constants.STOP;
+                Robot.shooter.setShooterMotor(0);
             }
-            Robot.shooter.setShooterMotor(speed);
         }
-    }
-
-    @Override
-    public void end(boolean interrupted){
-        Robot.shooter.stop();
     }
 }

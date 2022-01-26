@@ -4,7 +4,6 @@ import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
-import frc.robot.Constants;
 import frc.robot.Commands.ShooterCom;
 
 public class Shooter extends SubsystemBase{
@@ -16,10 +15,6 @@ public class Shooter extends SubsystemBase{
 
     public void setShooterMotor(double speed){
         shooter.set(speed);
-    }
-
-    public void stop(){
-        shooter.set(Constants.STOP);
     }
 
     @Override

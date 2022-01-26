@@ -1,23 +1,22 @@
 package frc.robot.Subsystems;
 
-import frc.robot.Constants;
 import frc.robot.Commands.DrivetrainCom;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
-import com.ctre.phoenix.motorcontrol.ControlMode;
-import com.ctre.phoenix.motorcontrol.can.VictorSPX;
+import com.revrobotics.CANSparkMax;
+import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 public class Drivetrain extends SubsystemBase{
-    private VictorSPX motorLeft1;
-    private VictorSPX motorLeft2;
-    private VictorSPX motorRight1;
-    private VictorSPX motorRight2;
+    private CANSparkMax motorLeft0;
+    private CANSparkMax motorLeft1;
+    private CANSparkMax motorRight0;
+    private CANSparkMax motorRight1;
 
-    public Drivetrain (int mL1, int mL2, int mR1, int mR2){
-        motorLeft1 = new VictorSPX(mL1);
-        motorLeft2 = new VictorSPX(mL2);
-        motorRight1 = new VictorSPX(mR1);
-        motorRight2 = new VictorSPX(mR2);
+    public Drivetrain (int mL0, int mL1, int mR0, int mR1){
+        motorLeft0 = new CANSparkMax(mL0, MotorType.kBrushless);
+        motorLeft1 = new CANSparkMax(mL1, MotorType.kBrushless);
+        motorRight0 = new CANSparkMax(mR0, MotorType.kBrushless);
+        motorRight1 = new CANSparkMax(mR1, MotorType.kBrushless);
     }
 
     @Override
@@ -26,19 +25,12 @@ public class Drivetrain extends SubsystemBase{
     }
 
     public void setLeftDrivetrain(double speed){
-        motorLeft1.set(ControlMode.PercentOutput, speed);
-        motorLeft2.set(ControlMode.PercentOutput, speed);
+        motorLeft0.set(speed);
+        motorLeft1.set(speed);
     }
 
     public void setRightDrivetrain(double speed){
-        motorRight1.set(ControlMode.PercentOutput, -speed);
-        motorRight2.set(ControlMode.PercentOutput, -speed);
-    }
-
-    public void stop(){
-        motorRight1.set(ControlMode.PercentOutput, Constants.STOP);
-        motorRight2.set(ControlMode.PercentOutput, Constants.STOP);
-        motorLeft1.set(ControlMode.PercentOutput, Constants.STOP);
-        motorLeft2.set(ControlMode.PercentOutput, Constants.STOP);
+        motorRight0.set(-speed);
+        motorRight1.set(-speed);
     }
 }

@@ -11,11 +11,6 @@ public class LimelightCom extends CommandBase{
     public LimelightCom(){
         addRequirements(Robot.limelight);
     }
-    
-    @Override
-    public void initialize(){
-
-    }
 
     @Override
     public void execute(){
@@ -26,10 +21,5 @@ public class LimelightCom extends CommandBase{
                 Robot.limelight.switchCameraMode();
             }
         }
-    }
-
-    @Override
-    public void end(boolean interrupted){
-
     }
 }

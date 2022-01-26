@@ -23,6 +23,8 @@ public class DrivetrainCom extends CommandBase{
         //Get joystick values
         double controller0_rightStickX = Robot.controller0.getJoystickAxis(Constants.RIGHT_STICK_X);
         double controller0_leftStickY = Robot.controller0.getJoystickAxis(Constants.LEFT_STICK_Y);
+        boolean controller0_leftBumper = Robot.controller0.getButton(Constants.LEFT_BUMPER);
+        boolean controller0_leftTrigger = Robot.controller0.getButton(Constants.LEFT_TRIGGER);
 
         if(controller0_rightStickX != prev_controller0_rightStickX ||
            controller0_leftStickY != prev_controller0_leftStickY){
@@ -31,8 +33,8 @@ public class DrivetrainCom extends CommandBase{
             prev_controller0_leftStickY = controller0_leftStickY;
 
             //Calculate values to set motors
-            double leftMotorSet = ((controller0_leftStickY - (Constants.LEFT_RIGHT_TRIM + (controller0_rightStickX * Constants.MAX_TURN_SPEED))) * Constants.MAX_DRIVE_SPEED);
-            double rightMotorSet = ((controller0_leftStickY + (Constants.LEFT_RIGHT_TRIM + (controller0_rightStickX * Constants.MAX_TURN_SPEED))) * Constants.MAX_DRIVE_SPEED);
+            double leftMotorSet = ((controller0_leftStickY - (Constants.LEFT_RIGHT_TRIM + (controller0_rightStickX * Constants.MAX_TURN_SPEED))) * (controller0_leftTrigger ? Constants.FULL_SPEED : (controller0_leftBumper ? Constants.SLOW_SPEED : Constants.MAX_DRIVE_SPEED)));
+            double rightMotorSet = ((controller0_leftStickY + (Constants.LEFT_RIGHT_TRIM + (controller0_rightStickX * Constants.MAX_TURN_SPEED))) * (controller0_leftTrigger ? Constants.FULL_SPEED : (controller0_leftBumper ? Constants.SLOW_SPEED : Constants.MAX_DRIVE_SPEED)));
 
             //Set motors
             Robot.drivetrain.setLeftDrivetrain(leftMotorSet);
@@ -42,6 +44,5 @@ public class DrivetrainCom extends CommandBase{
 
     @Override
     public void end(boolean inturrupted){
-        Robot.drivetrain.stop();
     }
 }

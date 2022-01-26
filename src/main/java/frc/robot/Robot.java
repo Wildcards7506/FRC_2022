@@ -28,10 +28,10 @@ public class Robot extends TimedRobot {
 
   //Subsystem Declarations
   public static final Drivetrain drivetrain = new Drivetrain(
+    Constants.LEFT_DRIVE_TRAIN_0,
     Constants.LEFT_DRIVE_TRAIN_1,
-    Constants.LEFT_DRIVE_TRAIN_2,
-    Constants.RIGHT_DRIVE_TRAIN_1,
-    Constants.RIGHT_DRIVE_TRAIN_2
+    Constants.RIGHT_DRIVE_TRAIN_0,
+    Constants.RIGHT_DRIVE_TRAIN_1
   );
 
   public static final Intake intake = new Intake(
@@ -45,8 +45,12 @@ public class Robot extends TimedRobot {
   );
 
   public static final Climbers climbers = new Climbers(
-    Constants.LEFT_CLIMBER,
-    Constants.RIGHT_CLIMBER
+    Constants.LEFT_CLIMBER_0,
+    Constants.LEFT_CLIMBER_1,
+    Constants.LEFT_CLIMBER_ROTATE, 
+    Constants.RIGHT_CLIMBER_0, 
+    Constants.RIGHT_CLIMBER_1, 
+    Constants.RIGHT_CLIMBER_ROTATE
   );
 
   public static final Limelight limelight = new Limelight();
