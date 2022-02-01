@@ -44,6 +44,7 @@ public class IntakeCom extends CommandBase{
 
             Robot.intake.setVerticalIntake(controller0_leftBumper ? Constants.VERTICAL_INTAKE_SPEED : (controller0_leftTrigger ? -Constants.VERTICAL_INTAKE_SPEED : 0));
             Robot.intake.setHorizontalIntake(controller1_rightBumper ? Constants.HORIZONTAL_INTAKE_SPEED : (controller1_rightTrigger ? -Constants.HORIZONTAL_INTAKE_SPEED : 0));
+            Robot.intake.setIntakeWheels(controller1_rightBumper ? Constants.INTAKE_WHEEL_SPEED : 0);
             Robot.intake.setIntakeLift(controller1_dpad == 0 ? Constants.INTAKE_LIFT_SPEED : (controller1_dpad == 180 ? -Constants.INTAKE_LIFT_SPEED : 0));
         }
     }

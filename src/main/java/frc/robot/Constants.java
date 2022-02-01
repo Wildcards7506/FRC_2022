@@ -2,26 +2,28 @@ package frc.robot;
 
 public class Constants {
     //Drivetrain
-    public static final int LEFT_DRIVE_TRAIN_0 = 3;
-    public static final int LEFT_DRIVE_TRAIN_1 = 4;
-    public static final int RIGHT_DRIVE_TRAIN_0 = 14;
-    public static final int RIGHT_DRIVE_TRAIN_1 = 15;
+    public static final int LEFT_DRIVE_TRAIN_0 = 19;
+    public static final int LEFT_DRIVE_TRAIN_1 = 20;
+    public static final int RIGHT_DRIVE_TRAIN_0 = 1;
+    public static final int RIGHT_DRIVE_TRAIN_1 = 25;
 
     //Climbers
-    public static final int LEFT_CLIMBER_0 = 1;
-    public static final int LEFT_CLIMBER_1 = 2;
-    public static final int LEFT_CLIMBER_ROTATE = 3;
-    public static final int RIGHT_CLIMBER_0 = 16;
-    public static final int RIGHT_CLIMBER_1 = 17;
-    public static final int RIGHT_CLIMBER_ROTATE = 18;
+    public static final int LEFT_CLIMBER_0 = 11;
+    public static final int LEFT_CLIMBER_1 = 12;
+    public static final int LEFT_CLIMBER_ROTATE = 18;
+    public static final int RIGHT_CLIMBER_0 = 9;
+    public static final int RIGHT_CLIMBER_1 = 10;
+    public static final int RIGHT_CLIMBER_ROTATE = 3;
 
     //Shooter
-    public static final int SHOOTER = 5;
+    public static final int SHOOTER = 15;
 
     //Intake
-    public static final int VERTICAL_INTAKE = 2;
-    public static final int HORIZONTAL_INTAKE = 12;
-    public static final int INTAKE_LIFT = 13;
+    public static final int VERTICAL_INTAKE = 17;
+    public static final int HORIZONTAL_INTAKE = 6;
+    public static final int INTAKE_LIFT = 4;
+    public static final int INTAKE_WHEEL_R = 5;
+    public static final int INTAKE_WHEEL_L = 16;
 
     //Controller Assignments
     public static final int DRIVER_CONTROLLER_0 = 0;
@@ -62,6 +64,7 @@ public class Constants {
     public static final double INTAKE_LIFT_SPEED = .5;
     public static final double HORIZONTAL_INTAKE_SPEED = .5;
     public static final double VERTICAL_INTAKE_SPEED = 1;
+    public static final double INTAKE_WHEEL_SPEED = 1;
 
     //Other
 }
