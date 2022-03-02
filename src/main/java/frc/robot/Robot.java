@@ -62,7 +62,7 @@ public class Robot extends TimedRobot {
   public static final Controller controller1 = new Controller(Constants.DRIVER_CONTROLLER_1);
 
   //command
-  private Command m_autonomousCommand;
+  private Command autoCommand;
   /**
    * This function is run when the robot is first started up and should be used for any
    * initialization code.
@@ -95,11 +95,11 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void autonomousInit() {
-    m_autonomousCommand = new AutoCommand();
+    autoCommand = new AutoCommand();
 
     // schedule the autonomous command (example)
-    if (m_autonomousCommand != null) {
-      m_autonomousCommand.schedule();
+    if (autoCommand != null) {
+      autoCommand.schedule();
     }
   }
 

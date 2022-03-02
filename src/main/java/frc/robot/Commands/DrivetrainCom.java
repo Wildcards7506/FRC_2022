@@ -32,9 +32,15 @@ public class DrivetrainCom extends CommandBase{
             prev_controller0_rightStickX = controller0_rightStickX;
             prev_controller0_leftStickY = controller0_leftStickY;
 
-            //Calculate values to set motors
-            double leftMotorSet = ((controller0_leftStickY - (Constants.LEFT_RIGHT_TRIM + (controller0_rightStickX * Constants.MAX_TURN_SPEED))) * (controller0_leftTrigger ? Constants.FULL_SPEED : (controller0_leftBumper ? Constants.SLOW_SPEED : Constants.MAX_DRIVE_SPEED)));
-            double rightMotorSet = ((controller0_leftStickY + (Constants.LEFT_RIGHT_TRIM + (controller0_rightStickX * Constants.MAX_TURN_SPEED))) * (controller0_leftTrigger ? Constants.FULL_SPEED : (controller0_leftBumper ? Constants.SLOW_SPEED : Constants.MAX_DRIVE_SPEED)));
+            double leftMotorSet = 0;
+            double rightMotorSet = 0;
+
+            // Calculate values to set motors
+            if(controller0_leftStickY != 0 || controller0_rightStickX != 0)
+            {
+                leftMotorSet = ((controller0_leftStickY - (Constants.LEFT_RIGHT_TRIM + (controller0_rightStickX * Constants.MAX_TURN_SPEED))) * (controller0_leftTrigger ? Constants.FULL_SPEED : (controller0_leftBumper ? Constants.SLOW_SPEED : Constants.MAX_DRIVE_SPEED)));
+                rightMotorSet = ((controller0_leftStickY + (Constants.LEFT_RIGHT_TRIM + (controller0_rightStickX * Constants.MAX_TURN_SPEED))) * (controller0_leftTrigger ? Constants.FULL_SPEED : (controller0_leftBumper ? Constants.SLOW_SPEED : Constants.MAX_DRIVE_SPEED)));
+            }
 
             //Set motors
             Robot.drivetrain.setLeftDrivetrain(leftMotorSet);

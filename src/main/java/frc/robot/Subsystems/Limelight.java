@@ -44,6 +44,7 @@ public class Limelight extends SubsystemBase {
 
     public void switchCameraMode(){
         table.getEntry("camMode").setNumber(table.getEntry("camMode").getDouble(0.0) == 0 ? 1 : 0);
+        table.getEntry("ledMode").setNumber(table.getEntry("ledMode").getDouble(0.0) == 0 ? 3 : 0);
         // table.getEntry("camMode").setNumber(1);
     }
 

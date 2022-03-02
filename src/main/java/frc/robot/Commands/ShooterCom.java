@@ -51,5 +51,6 @@ public class ShooterCom extends CommandBase{
                 Robot.shooter.setShooterMotor(0);
             }
         }
+        Robot.shooter.updateDashboard();
     }
 }

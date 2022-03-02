@@ -19,11 +19,11 @@ public class IntakeCom extends CommandBase{
     @Override
     public void execute(){
         //lift
-        int controller1_dpad = Robot.controller0.getPOV();
+        int controller1_dpad = Robot.controller1.getPOV();
 
         // //vertical
-        boolean controller0_leftBumper = Robot.controller1.getButton(Constants.LEFT_BUMPER);
-        boolean controller0_leftTrigger = Robot.controller1.getTrigger(Constants.LEFT_TRIGGER);
+        boolean controller0_rightBumper = Robot.controller0.getButton(Constants.RIGHT_BUMPER);
+        boolean controller0_rightTrigger = Robot.controller0.getTrigger(Constants.RIGHT_TRIGGER);
         
         // //horizontal
         boolean controller1_rightBumper = Robot.controller1.getButton(Constants.RIGHT_BUMPER);
@@ -31,20 +31,20 @@ public class IntakeCom extends CommandBase{
 
         if(
             controller1_dpad != prev_controller1_dpad ||
-            controller0_leftBumper != prev_controller0_leftBumper ||
-            controller0_leftTrigger != prev_controller0_leftTrigger ||
+            controller0_rightBumper != prev_controller0_leftBumper ||
+            controller0_rightTrigger != prev_controller0_leftTrigger ||
             controller1_rightBumper != prev_controller1_rightBumper ||
             controller1_rightTrigger != prev_controller1_rightTrigger
         ){
             prev_controller1_dpad = controller1_dpad;
-            prev_controller0_leftBumper = controller0_leftBumper;
-            prev_controller0_leftTrigger = controller0_leftTrigger;
+            prev_controller0_leftBumper = controller0_rightBumper;
+            prev_controller0_leftTrigger = controller0_rightTrigger;
             prev_controller1_rightBumper = controller1_rightBumper;
             prev_controller1_rightTrigger = controller1_rightTrigger;
 
-            Robot.intake.setVerticalIntake(controller0_leftBumper ? Constants.VERTICAL_INTAKE_SPEED : (controller0_leftTrigger ? -Constants.VERTICAL_INTAKE_SPEED : 0));
-            Robot.intake.setHorizontalIntake(controller1_rightBumper ? Constants.HORIZONTAL_INTAKE_SPEED : (controller1_rightTrigger ? -Constants.HORIZONTAL_INTAKE_SPEED : 0));
-            Robot.intake.setIntakeWheels(controller1_rightBumper ? Constants.INTAKE_WHEEL_SPEED : 0);
+            Robot.intake.setVerticalIntake(controller0_rightBumper ? Constants.VERTICAL_INTAKE_SPEED : (controller0_rightTrigger ? -Constants.VERTICAL_INTAKE_SPEED : 0));
+            Robot.intake.setHorizontalIntake(controller1_rightTrigger ? Constants.HORIZONTAL_INTAKE_SPEED : (controller1_rightBumper ? -Constants.HORIZONTAL_INTAKE_SPEED : 0));
+            Robot.intake.setIntakeWheels(controller1_rightTrigger ? Constants.INTAKE_WHEEL_SPEED : 0);
             Robot.intake.setIntakeLift(controller1_dpad == 0 ? Constants.INTAKE_LIFT_SPEED : (controller1_dpad == 180 ? -Constants.INTAKE_LIFT_SPEED : 0));
         }
     }
