@@ -31,7 +31,7 @@ public class Intake extends SubsystemBase{
     }
 
     public void setIntakeLift(double speed){
-        intakeLift.set(ControlMode.PercentOutput, speed);
+        intakeLift.set(ControlMode.PercentOutput, -speed);
     }
 
     public void setIntakeWheels(double speed){

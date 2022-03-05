@@ -7,7 +7,7 @@ package frc.robot;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
-import frc.robot.Autonomous.AutoCommand;
+import frc.robot.Autonomous.AutoSequence;
 import frc.robot.Subsystems.Climbers;
 import frc.robot.Subsystems.Drivetrain;
 import frc.robot.Subsystems.Intake;
@@ -62,7 +62,7 @@ public class Robot extends TimedRobot {
   public static final Controller controller1 = new Controller(Constants.DRIVER_CONTROLLER_1);
 
   //command
-  private Command autoCommand;
+  private Command autoSequence;
   /**
    * This function is run when the robot is first started up and should be used for any
    * initialization code.
@@ -95,11 +95,11 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void autonomousInit() {
-    autoCommand = new AutoCommand();
+    autoSequence = new AutoSequence();
 
     // schedule the autonomous command (example)
-    if (autoCommand != null) {
-      autoCommand.schedule();
+    if (autoSequence != null) {
+      autoSequence.schedule();
     }
   }
 

@@ -18,6 +18,7 @@ public class ClimbersCom extends CommandBase{
     public void execute(){        
         double controller1_leftJoystickY = Robot.controller1.getJoystickAxis(Constants.LEFT_STICK_Y);
         double controller1_rightJoystickY = Robot.controller1.getJoystickAxis(Constants.RIGHT_STICK_Y);
+        double controller1_dpad = Robot.controller1.getPOV();
 
         // if(controller1_leftJoystickY != prev_controller1_leftJoystickY || 
         //    controller1_rightJoystickY != prev_controller1_rightJoystickY){
@@ -27,7 +28,7 @@ public class ClimbersCom extends CommandBase{
 
             Robot.climbers.setLeftClimber(controller1_leftJoystickY);
             Robot.climbers.setRightClimber(controller1_rightJoystickY);
-            Robot.climbers.setClimberRotation(Robot.controller1.getTrigger(Constants.LEFT_TRIGGER) ? Constants.CLIMBER_ROTATION_SPEED : (Robot.controller1.getButton(Constants.LEFT_BUMPER) ? -Constants.CLIMBER_ROTATION_SPEED : Constants.CLIMBER_ROTATION_STATIC));
+            Robot.climbers.setClimberRotation(controller1_dpad == 180 ? Constants.CLIMBER_ROTATION_SPEED : (controller1_dpad == 0 ? -Constants.CLIMBER_ROTATION_SPEED : Constants.CLIMBER_ROTATION_STATIC));
             Robot.climbers.updateDashboard();
         // }
     }

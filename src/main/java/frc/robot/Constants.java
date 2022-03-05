@@ -8,11 +8,11 @@ public class Constants {
     public static final int RIGHT_DRIVE_TRAIN_1 = 2;
 
     //Climbers
-    public static final int LEFT_CLIMBER_0 = 11;
+    public static final int LEFT_CLIMBER_0 = 9;
     public static final int LEFT_CLIMBER_1 = 12;
     public static final int LEFT_CLIMBER_ROTATE = 18;
-    public static final int RIGHT_CLIMBER_0 = 9;
-    public static final int RIGHT_CLIMBER_1 = 10;
+    public static final int RIGHT_CLIMBER_0 = 10;
+    public static final int RIGHT_CLIMBER_1 = 11;
     public static final int RIGHT_CLIMBER_ROTATE = 3;
 
     //Shooter

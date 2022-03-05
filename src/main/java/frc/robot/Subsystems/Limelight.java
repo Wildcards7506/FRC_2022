@@ -7,6 +7,7 @@ import frc.robot.Commands.LimelightCom;
 import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.networktables.NetworkTableInstance;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class Limelight extends SubsystemBase {
 
@@ -28,17 +29,24 @@ public class Limelight extends SubsystemBase {
         tx = table.getEntry("tx");
         ta = table.getEntry("ta");
         tv = table.getEntry("tv");
+        
+        SmartDashboard.putNumber("tx", tx.getDouble(0.0));
+        SmartDashboard.putNumber("ta", ta.getDouble(0.0));
+        SmartDashboard.putNumber("tv", tv.getDouble(0.0));
     }
 
     public double getTX() {
+        updateData();
         return tx.getDouble(0.0);
     }
 
     public double getTA() {
+        updateData();
         return ta.getDouble(0.0);
     }
 
     public double getTV() {
+        updateData();
         return tv.getDouble(0.0);
     }
 
