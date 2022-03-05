@@ -13,6 +13,7 @@ import frc.robot.Subsystems.Drivetrain;
 import frc.robot.Subsystems.Intake;
 import frc.robot.Subsystems.Limelight;
 import frc.robot.Subsystems.Shooter;
+import frc.robot.Subsystems.LightStrip;
 
 /**
  * The VM is configured to automatically run this class, and to call the functions corresponding to
@@ -56,6 +57,10 @@ public class Robot extends TimedRobot {
   );
 
   public static final Limelight limelight = new Limelight();
+  public static final LightStrip lightstrip = new LightStrip(
+    Constants.LIGHTS_PWM_PORT,
+    Constants.NUM_LIGHTS
+  );
 
   //Controllers
   public static final Controller controller0 = new Controller(Constants.DRIVER_CONTROLLER_0);
