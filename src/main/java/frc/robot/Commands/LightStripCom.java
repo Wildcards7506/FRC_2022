@@ -8,7 +8,6 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Robot;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
-
 public class LightStripCom extends CommandBase {
   /** Creates a new LightStrip. */
   public LightStripCom() {

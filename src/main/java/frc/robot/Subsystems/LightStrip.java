@@ -20,10 +20,12 @@ public class LightStrip extends SubsystemBase {
   }
 
   public void preMatch(){
-    SmartDashboard.putString("LightMode", "RED");
     for (var i = 0; i < ledBuffer.getLength(); i++){
-      ledBuffer.setHSV(i, 0, 255, 255);
+      ledBuffer.setHSV(i, 100, 100, 100);
+      SmartDashboard.putString("LightMode", "RED");
     }
+
+    led.setData(ledBuffer);
   }
 
   @Override
