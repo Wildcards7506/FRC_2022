@@ -1,5 +1,6 @@
 package frc.robot.Subsystems;
 
+import frc.robot.Constants;
 import frc.robot.Commands.DrivetrainCom;
 import edu.wpi.first.math.controller.SimpleMotorFeedforward;
 import edu.wpi.first.math.geometry.Pose2d;
@@ -28,7 +29,7 @@ public class Drivetrain extends SubsystemBase{
     private AHRS gyro = new AHRS(SPI.Port.kMXP);
     private DifferentialDriveOdometry odometry = new DifferentialDriveOdometry(getHeading());
     private DifferentialDriveKinematics kinematics = new DifferentialDriveKinematics(Units.inchesToMeters(19.25));
-    private SimpleMotorFeedforward feedforward = new SimpleMotorFeedforward(ks, kv)
+    private SimpleMotorFeedforward feedforward = new SimpleMotorFeedforward(Constants.KS, Constants.KV);
     private Pose2d pose;
 
     public Drivetrain (int mL0, int mL1, int mR0, int mR1){

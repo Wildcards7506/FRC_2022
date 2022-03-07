@@ -65,4 +65,6 @@ public class Constants {
     public static final double HORIZONTAL_INTAKE_SPEED = -.75;
     public static final double VERTICAL_INTAKE_SPEED = 1;
     public static final double INTAKE_WHEEL_SPEED = -.1;
+    public static final double KV = 1;
+    public static final double KS = 1;
 }
