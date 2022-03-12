@@ -25,6 +25,10 @@ public class Constants {
     public static final int INTAKE_WHEEL_R = 16;
     public static final int INTAKE_WHEEL_L = 5;
 
+    //Lights
+    public static final int LIGHTS_PWM_PORT = 3;
+    public static final int NUM_LIGHTS = 79;
+
     //Controller Assignments
     public static final int DRIVER_CONTROLLER_0 = 0;
     public static final int DRIVER_CONTROLLER_1 = 1;
