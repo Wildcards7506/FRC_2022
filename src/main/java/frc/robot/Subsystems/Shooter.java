@@ -27,6 +27,6 @@ public class Shooter extends SubsystemBase{
     }
 
     public void updateDashboard(){
-        SmartDashboard.putNumber("Shooter Position", shooterEncoder.getVelocity());
+        SmartDashboard.putNumber("Shooter Speed ", shooterEncoder.getVelocity());
     } 
 }
