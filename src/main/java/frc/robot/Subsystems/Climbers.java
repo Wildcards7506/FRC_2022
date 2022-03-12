@@ -108,6 +108,24 @@ public class Climbers extends SubsystemBase{
         SmartDashboard.putNumber("Right Rotator Position ", rightRotateEncoder.getPosition());
     }
 
+    public void encoderMatch(double speed){
+        double encoderDifference = climberEncoderRight.getPosition() - climberEncoderLeft.getPosition();
+        leftClimber0.set(-speed);
+        leftClimber1.set(-speed);
+        while(Math.abs(encoderDifference) > 0.5){
+            rightClimber0.set(encoderDifference/Math.abs(encoderDifference));
+            rightClimber1.set(encoderDifference/Math.abs(encoderDifference));
+        }
+    }
+
+    public double getRightEncoder(){
+        return rightRotateEncoder.getPosition();
+    }
+
+    public double getRightExtension(){
+        return climberEncoderRight.getPosition();
+    }
+
     @Override
     public void periodic(){
         setDefaultCommand(new ClimbersCom());
