@@ -27,7 +27,7 @@ public class Constants {
 
     //Lights
     public static final int LIGHTS_PWM_PORT = 3;
-    public static final int NUM_LIGHTS = 80;
+    public static final int NUM_LIGHTS = 79;
 
     //Controller Assignments
     public static final int DRIVER_CONTROLLER_0 = 0;

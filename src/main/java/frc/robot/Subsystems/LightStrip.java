@@ -19,20 +19,107 @@ public class LightStrip extends SubsystemBase {
     led.start();
   }
 
+  // Shooter lights
   public void preMatch(){
-    boolean set = false;
-    for (int i = 1; i <= ledBuffer.getLength(); i++){
-        if (i == 1){
-          ledBuffer.setHSV(0, 100, 100, 100);
-        } else if (ledBuffer.getLED(i - 1).red != 0 && !set){
-          ledBuffer.setHSV(i - 1, 100, 100, 100);
-          set = true;
-        } else {
-          ledBuffer.setHSV(i - 1, 0, 0, 0);
-        }
+    int greenHue = 60;
+    int yellowHue = 20;
+    int sat = 255;
+    double time = .005;
+    for(int i = 1; i < ledBuffer.getLength(); i++){
+      for(int j = 0; j < ledBuffer.getLength(); j++){
+        ledBuffer.setHSV(j, greenHue, sat, 255);
+        Timer.delay(time);
+        led.setData(ledBuffer);
+      }
+      
+      for(int k = 0; k < ledBuffer.getLength(); k++){
+        ledBuffer.setHSV(k, yellowHue, sat, 255);
+        Timer.delay(time);
+        led.setData(ledBuffer);
+      }
+
+      for(int k = 0; k < ledBuffer.getLength(); k++){
+        ledBuffer.setHSV(k, 250, sat, 255);
+        Timer.delay(time);
+        led.setData(ledBuffer);
+      }
     }
-    Timer.delay(.1);
-    led.setData(ledBuffer);
+  }
+
+  public void idle(int color){
+    if(color == 0){
+      for(int k = 0; k < ledBuffer.getLength(); k++){
+        ledBuffer.setHSV(k, 0, 255, 255);
+        led.setData(ledBuffer);
+      }  
+    } else if (color == 1){
+      for(int k = 0; k < ledBuffer.getLength(); k++){
+        ledBuffer.setHSV(k, 110, 255, 255);
+        led.setData(ledBuffer);
+      }  
+    }  
+  }
+
+  public void aiming(){
+    for(int k = 0; k < ledBuffer.getLength(); k++){
+      ledBuffer.setHSV(k, 20, 255, 255);
+      led.setData(ledBuffer);
+    }
+  }
+
+  public void targetLocked(){
+    for(int j = 0; j < ledBuffer.getLength(); j++){
+      ledBuffer.setHSV(j, 60, 255, 255);
+      led.setData(ledBuffer);
+    }
+  }
+
+  // Climber lights
+  public void armsAreVertical(){
+    for(int j = 0; j < ledBuffer.getLength(); j++){
+      ledBuffer.setHSV(j, 0, 0, 255);
+      led.setData(ledBuffer);
+    }
+  }
+
+  public void armsAreRotating(){
+    for(int j = 0; j < ledBuffer.getLength(); j++){
+      ledBuffer.setHSV(j, 20, 255, 255);
+      led.setData(ledBuffer);
+    }
+  }
+
+  public void armsAreExtending(){
+    int greenHue = 60;
+    int yellowHue = 20;
+    int sat = 255;
+    double time = .005;
+    for(int i = 1; i < ledBuffer.getLength(); i++){
+      for(int j = 0; j < ledBuffer.getLength(); j++){
+        ledBuffer.setHSV(j, greenHue, sat, 255);
+        Timer.delay(time);
+        led.setData(ledBuffer);
+      }
+      
+      for(int k = 0; k < ledBuffer.getLength(); k++){
+        ledBuffer.setHSV(k, yellowHue, sat, 255);
+        Timer.delay(time);
+        led.setData(ledBuffer);
+      }
+
+      for(int k = 0; k < ledBuffer.getLength(); k++){
+        ledBuffer.setHSV(k, 250, sat, 255);
+        Timer.delay(time);
+        led.setData(ledBuffer);
+      }
+    }
+  }
+
+  public void fullyExtendedOrRetracted(){
+    for(int j = 0; j < ledBuffer.getLength(); j++){
+      ledBuffer.setHSV(j, 60, 255, 255);
+      led.setData(ledBuffer);
+    }
   }
 
   @Override
