@@ -38,10 +38,10 @@ public class Climbers extends SubsystemBase{
         rightRotateEncoder = rightClimberRotate.getEncoder();
         leftRotateEncoder = leftClimberRotate.getEncoder();
 
-        // leftClimberRotate.enableSoftLimit(CANSparkMax.SoftLimitDirection.kForward,true);
-        // leftClimberRotate.enableSoftLimit(CANSparkMax.SoftLimitDirection.kReverse,true);
-        // rightClimberRotate.enableSoftLimit(CANSparkMax.SoftLimitDirection.kForward,true);
-        // rightClimberRotate.enableSoftLimit(CANSparkMax.SoftLimitDirection.kReverse,true);
+        leftClimberRotate.enableSoftLimit(CANSparkMax.SoftLimitDirection.kForward,true);
+        leftClimberRotate.enableSoftLimit(CANSparkMax.SoftLimitDirection.kReverse,true);
+        rightClimberRotate.enableSoftLimit(CANSparkMax.SoftLimitDirection.kForward,true);
+        rightClimberRotate.enableSoftLimit(CANSparkMax.SoftLimitDirection.kReverse,true);
 
         // leftClimber0.enableSoftLimit(CANSparkMax.SoftLimitDirection.kForward, true);
         // leftClimber1.enableSoftLimit(CANSparkMax.SoftLimitDirection.kForward, true);
@@ -52,10 +52,10 @@ public class Climbers extends SubsystemBase{
         // rightClimber0.enableSoftLimit(CANSparkMax.SoftLimitDirection.kReverse, true);
         // rightClimber1.enableSoftLimit(CANSparkMax.SoftLimitDirection.kReverse, true);
 
-        // leftClimberRotate.setSoftLimit(CANSparkMax.SoftLimitDirection.kForward, (float) 0);
-        // leftClimberRotate.setSoftLimit(CANSparkMax.SoftLimitDirection.kReverse, (float) 5.8);
-        // rightClimberRotate.setSoftLimit(CANSparkMax.SoftLimitDirection.kForward, (float) 5.8);
-        // rightClimberRotate.setSoftLimit(CANSparkMax.SoftLimitDirection.kReverse, (float) 0);
+        leftClimberRotate.setSoftLimit(CANSparkMax.SoftLimitDirection.kForward, (float) 0);
+        leftClimberRotate.setSoftLimit(CANSparkMax.SoftLimitDirection.kReverse, (float) 4);
+        rightClimberRotate.setSoftLimit(CANSparkMax.SoftLimitDirection.kForward, (float) 4);
+        rightClimberRotate.setSoftLimit(CANSparkMax.SoftLimitDirection.kReverse, (float) 0);
 
         // leftClimber0.setSoftLimit(CANSparkMax.SoftLimitDirection.kForward, 15);
         // leftClimber0.setSoftLimit(CANSparkMax.SoftLimitDirection.kReverse, 0);
@@ -102,10 +102,10 @@ public class Climbers extends SubsystemBase{
 
     public void updateDashboard()
     {
-        SmartDashboard.putNumber("Right Climber Position", climberEncoderRight.getPosition());
-        SmartDashboard.putNumber("Left Climber Position", climberEncoderLeft.getPosition());
-        SmartDashboard.putNumber("Left Rotator Position", leftRotateEncoder.getPosition());
-        SmartDashboard.putNumber("Right Rotator Position", rightRotateEncoder.getPosition());
+        SmartDashboard.putNumber("Right Climber Position ", climberEncoderRight.getPosition());
+        SmartDashboard.putNumber("Left Climber Position ", climberEncoderLeft.getPosition());
+        SmartDashboard.putNumber("Left Rotator Position ", leftRotateEncoder.getPosition());
+        SmartDashboard.putNumber("Right Rotator Position ", rightRotateEncoder.getPosition());
     }
 
     @Override
