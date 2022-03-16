@@ -11,15 +11,11 @@ public class Intake extends SubsystemBase{
     private VictorSPX horizontalIntake;
     private VictorSPX intakeLift;
     private VictorSPX verticalIntake;
-    private VictorSPX intakeWheelR;
-    private VictorSPX intakeWheelL;
 
-    public Intake (int horIntake, int vertIntake, int inLift, int wheelR, int wheelL) {
+    public Intake (int horIntake, int vertIntake, int inLift) {
         horizontalIntake = new VictorSPX(horIntake);
         verticalIntake = new VictorSPX(vertIntake);
         intakeLift = new VictorSPX(inLift);
-        intakeWheelL = new VictorSPX(wheelR);
-        intakeWheelR = new VictorSPX(wheelL);
     }
 
     public void setHorizontalIntake(double speed) {
@@ -32,11 +28,6 @@ public class Intake extends SubsystemBase{
 
     public void setIntakeLift(double speed){
         intakeLift.set(ControlMode.PercentOutput, -speed);
-    }
-
-    public void setIntakeWheels(double speed){
-        intakeWheelL.set(ControlMode.PercentOutput, speed);
-        intakeWheelR.set(ControlMode.PercentOutput, speed);
     }
 
     @Override

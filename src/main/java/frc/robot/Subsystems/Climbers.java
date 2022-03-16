@@ -6,7 +6,6 @@ import com.revrobotics.CANSparkMax;
 import com.revrobotics.RelativeEncoder;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
-import edu.wpi.first.wpilibj.PWM;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Commands.ClimbersCom;
@@ -22,7 +21,6 @@ public class Climbers extends SubsystemBase{
     private RelativeEncoder rightRotateEncoder;
     private RelativeEncoder climberEncoderLeft;
     private RelativeEncoder leftRotateEncoder;
-    private PWM arduino;
 
 
     public Climbers(int climberL0, int climberL1, int climberLR, int climberR0, int climberR1, int climberRR) {
@@ -38,10 +36,10 @@ public class Climbers extends SubsystemBase{
         rightRotateEncoder = rightClimberRotate.getEncoder();
         leftRotateEncoder = leftClimberRotate.getEncoder();
 
-        leftClimberRotate.enableSoftLimit(CANSparkMax.SoftLimitDirection.kForward,true);
-        leftClimberRotate.enableSoftLimit(CANSparkMax.SoftLimitDirection.kReverse,true);
-        rightClimberRotate.enableSoftLimit(CANSparkMax.SoftLimitDirection.kForward,true);
-        rightClimberRotate.enableSoftLimit(CANSparkMax.SoftLimitDirection.kReverse,true);
+        // leftClimberRotate.enableSoftLimit(CANSparkMax.SoftLimitDirection.kForward,true);
+        // leftClimberRotate.enableSoftLimit(CANSparkMax.SoftLimitDirection.kReverse,true);
+        // rightClimberRotate.enableSoftLimit(CANSparkMax.SoftLimitDirection.kForward,true);
+        // rightClimberRotate.enableSoftLimit(CANSparkMax.SoftLimitDirection.kReverse,true);
 
         // leftClimber0.enableSoftLimit(CANSparkMax.SoftLimitDirection.kForward, true);
         // leftClimber1.enableSoftLimit(CANSparkMax.SoftLimitDirection.kForward, true);
@@ -52,21 +50,17 @@ public class Climbers extends SubsystemBase{
         // rightClimber0.enableSoftLimit(CANSparkMax.SoftLimitDirection.kReverse, true);
         // rightClimber1.enableSoftLimit(CANSparkMax.SoftLimitDirection.kReverse, true);
 
-        leftClimberRotate.setSoftLimit(CANSparkMax.SoftLimitDirection.kForward, (float) 0);
-        leftClimberRotate.setSoftLimit(CANSparkMax.SoftLimitDirection.kReverse, (float) 4);
-        rightClimberRotate.setSoftLimit(CANSparkMax.SoftLimitDirection.kForward, (float) 4);
-        rightClimberRotate.setSoftLimit(CANSparkMax.SoftLimitDirection.kReverse, (float) 0);
+        // leftClimberRotate.setSoftLimit(CANSparkMax.SoftLimitDirection.kReverse, (float) -4);
+        // rightClimberRotate.setSoftLimit(CANSparkMax.SoftLimitDirection.kForward, (float) 4);
 
-        // leftClimber0.setSoftLimit(CANSparkMax.SoftLimitDirection.kForward, 15);
+        // leftClimber0.setSoftLimit(CANSparkMax.SoftLimitDirection.kForward, 270);
         // leftClimber0.setSoftLimit(CANSparkMax.SoftLimitDirection.kReverse, 0);
-        // rightClimber0.setSoftLimit(CANSparkMax.SoftLimitDirection.kForward, 0);
-        // rightClimber0.setSoftLimit(CANSparkMax.SoftLimitDirection.kReverse, 15);
-        // leftClimber1.setSoftLimit(CANSparkMax.SoftLimitDirection.kForward, 15);
+        // rightClimber0.setSoftLimit(CANSparkMax.SoftLimitDirection.kForward, 270);
+        // rightClimber0.setSoftLimit(CANSparkMax.SoftLimitDirection.kReverse, 0);
+        // leftClimber1.setSoftLimit(CANSparkMax.SoftLimitDirection.kForward, 270);
         // leftClimber1.setSoftLimit(CANSparkMax.SoftLimitDirection.kReverse, 0);
-        // rightClimber1.setSoftLimit(CANSparkMax.SoftLimitDirection.kForward, 0);
-        // rightClimber1.setSoftLimit(CANSparkMax.SoftLimitDirection.kReverse, 15);
-
-        arduino = new PWM(0);
+        // rightClimber1.setSoftLimit(CANSparkMax.SoftLimitDirection.kForward, 270);
+        // rightClimber1.setSoftLimit(CANSparkMax.SoftLimitDirection.kReverse, 0);
     }
 
     public HashMap<String, Double> getEncoderValues() {
@@ -81,17 +75,11 @@ public class Climbers extends SubsystemBase{
     public void setLeftClimber(double speed){
         leftClimber0.set(-speed);
         leftClimber1.set(-speed);
-        if(arduino.getRaw() != 100){
-            arduino.setRaw(100);
-        }
     }
 
     public void setRightClimber(double speed){
         rightClimber0.set(-speed);
         rightClimber1.set(-speed);
-        if(arduino.getRaw() == 100){
-            arduino.setRaw(100);
-        }
     }
 
     public void setClimberRotation(double speed)
@@ -106,24 +94,15 @@ public class Climbers extends SubsystemBase{
         SmartDashboard.putNumber("Left Climber Position ", climberEncoderLeft.getPosition());
         SmartDashboard.putNumber("Left Rotator Position ", leftRotateEncoder.getPosition());
         SmartDashboard.putNumber("Right Rotator Position ", rightRotateEncoder.getPosition());
+        SmartDashboard.putNumber("Left Rotator Current ", leftClimberRotate.getOutputCurrent());
+        SmartDashboard.putNumber("Right Rotator Current ", rightClimberRotate.getOutputCurrent());
+
     }
 
-    public void encoderMatch(double speed){
+    public void encoderMatch(double speed, int direction){
         double encoderDifference = climberEncoderRight.getPosition() - climberEncoderLeft.getPosition();
-        leftClimber0.set(-speed);
-        leftClimber1.set(-speed);
-        while(Math.abs(encoderDifference) > 0.5){
-            rightClimber0.set(encoderDifference/Math.abs(encoderDifference));
-            rightClimber1.set(encoderDifference/Math.abs(encoderDifference));
-        }
-    }
-
-    public double getRightEncoder(){
-        return rightRotateEncoder.getPosition();
-    }
-
-    public double getRightExtension(){
-        return climberEncoderRight.getPosition();
+        this.setLeftClimber(direction + ((encoderDifference * speed) > 1 ? (encoderDifference * speed) : 1));
+        this.setRightClimber(direction - ((encoderDifference * speed) > 1 ? (encoderDifference * speed) : 1));
     }
 
     @Override

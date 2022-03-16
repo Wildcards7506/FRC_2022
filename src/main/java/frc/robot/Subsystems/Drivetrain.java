@@ -2,6 +2,7 @@ package frc.robot.Subsystems;
 
 import frc.robot.Constants;
 import frc.robot.Commands.DrivetrainCom;
+import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.math.controller.SimpleMotorFeedforward;
 import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.geometry.Rotation2d;
@@ -24,13 +25,19 @@ public class Drivetrain extends SubsystemBase{
     private CANSparkMax motorLeft1;
     private CANSparkMax motorRight0;
     private CANSparkMax motorRight1;
+
     private RelativeEncoder rightDrivetrain;
     private RelativeEncoder leftDrivetrain;
+
     private AHRS gyro = new AHRS(SPI.Port.kMXP);
-    private DifferentialDriveOdometry odometry = new DifferentialDriveOdometry(getHeading());
+
     private DifferentialDriveKinematics kinematics = new DifferentialDriveKinematics(Units.inchesToMeters(19.25));
-    private SimpleMotorFeedforward feedforward = new SimpleMotorFeedforward(Constants.KS, Constants.KV);
     private Pose2d pose;
+    private DifferentialDriveOdometry odometry = new DifferentialDriveOdometry(getHeading(), pose);
+    private SimpleMotorFeedforward feedforward = new SimpleMotorFeedforward(Constants.kS, Constants.kV);
+    
+    PIDController leftPIDController = new PIDController(Constants.kP,0,0);
+    PIDController rightPIDController = new PIDController(Constants.kP,0,0);
 
     public Drivetrain (int mL0, int mL1, int mR0, int mR1){
         motorLeft0 = new CANSparkMax(mL0, MotorType.kBrushless);
@@ -44,7 +51,11 @@ public class Drivetrain extends SubsystemBase{
 
     @Override
     public void periodic(){
-        updateOdometry();
+        //Check Chief Delphi
+        pose = odometry.update( getHeading(), 
+                                leftDrivetrain.getPosition()/ 6 * 2 * Math.PI * Units.inchesToMeters(4), 
+                                rightDrivetrain.getPosition()/ 6 * 2 * Math.PI * Units.inchesToMeters(4)
+        );
         setDefaultCommand(new DrivetrainCom());
     }
 
@@ -66,13 +77,39 @@ public class Drivetrain extends SubsystemBase{
         motorRight1.set(-speed);
     }
 
-    public void updateOdometry(){
-        DifferentialDriveWheelSpeeds ddws = new DifferentialDriveWheelSpeeds(leftDrivetrain.getVelocity() / 6 * Units.inchesToMeters(24) / 60, 
-                                                                            rightDrivetrain.getVelocity() / 6 * Units.inchesToMeters(24) / 60); 
-        pose = odometry.update(getHeading(), ddws.leftMetersPerSecond, ddws.rightMetersPerSecond);
+    public DifferentialDriveWheelSpeeds getSpeeds(){
+        return new DifferentialDriveWheelSpeeds(
+            leftDrivetrain.getVelocity() / 6 * 2 * Math.PI * Units.inchesToMeters(4) / 60, 
+            rightDrivetrain.getVelocity() / 6 * 2 * Math.PI * Units.inchesToMeters(4) / 60
+        ); 
     }
 
     public Rotation2d getHeading(){
         return Rotation2d.fromDegrees(-gyro.getAngle());
+    }
+
+    public void trajSetOutput(double leftVolts, double rightVolts){
+        setLeftDrivetrain(leftVolts/12);
+        setRightDrivetrain(rightVolts/12);
+    }
+
+    public SimpleMotorFeedforward getFeedforward(){
+        return feedforward;
+    }
+
+    public PIDController getLeftPIDController(){
+        return leftPIDController;
+    }
+
+    public PIDController getRightPIDController(){
+        return rightPIDController;
+    }
+
+    public DifferentialDriveKinematics getKinematics(){
+        return kinematics;
+    }
+
+    public Pose2d getPose(){
+        return pose;
     }
 }

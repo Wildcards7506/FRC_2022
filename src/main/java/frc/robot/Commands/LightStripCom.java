@@ -5,9 +5,7 @@
 package frc.robot.Commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.Constants;
 import frc.robot.Robot;
-import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class LightStripCom extends CommandBase {
@@ -23,7 +21,7 @@ public class LightStripCom extends CommandBase {
     // Shooting methods
     // int c = 0;
     //Robot.lightstrip.idle(c);
-    Robot.lightstrip.preMatch();
+    //Robot.lightstrip.preMatch();
     // Robot.lightstrip.aiming();
     // Robot.lightstrip.targetLocked();
 

@@ -38,9 +38,7 @@ public class Robot extends TimedRobot {
   public static final Intake intake = new Intake(
     Constants.HORIZONTAL_INTAKE,
     Constants.VERTICAL_INTAKE,
-    Constants.INTAKE_LIFT,
-    Constants.INTAKE_WHEEL_R,
-    Constants.INTAKE_WHEEL_L
+    Constants.INTAKE_LIFT
   );
 
   public static final Shooter shooter = new Shooter(
@@ -101,11 +99,7 @@ public class Robot extends TimedRobot {
   @Override
   public void autonomousInit() {
     autoSequence = new AutoSequence();
-
-    // schedule the autonomous command (example)
-    if (autoSequence != null) {
-      autoSequence.schedule();
-    }
+    autoSequence.schedule();
   }
 
   /** This function is called periodically during autonomous. */

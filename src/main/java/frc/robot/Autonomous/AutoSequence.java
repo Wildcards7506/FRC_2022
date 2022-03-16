@@ -1,14 +1,16 @@
 package frc.robot.Autonomous;
 
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
-import frc.robot.Robot;
 
 public class AutoSequence extends SequentialCommandGroup {
-    public AutoSequence() {
+    
+    public AutoSequence(){
         AutoCommand.limelightShoot();
-        while(true){
-            Robot.limelight.updateData();
-        }
-        //AutoCommand.linearDrive();
+        AutoCommand.trajectoryCommand(0, Math.PI);
+        AutoCommand.runIntake(1.0);
+        AutoCommand.trajectoryCommand(3.0, 0);
+        AutoCommand.runIntake(0.0);
+        AutoCommand.trajectoryCommand(0, 0);
+        AutoCommand.limelightShoot();
     }
 }
