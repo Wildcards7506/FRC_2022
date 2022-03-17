@@ -6,20 +6,33 @@ import edu.wpi.first.wpilibj2.command.RamseteCommand;
 import java.util.Arrays;
 
 import edu.wpi.first.math.controller.RamseteController;
+import edu.wpi.first.math.controller.SimpleMotorFeedforward;
 import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.math.trajectory.Trajectory;
 import edu.wpi.first.math.trajectory.TrajectoryConfig;
 import edu.wpi.first.math.trajectory.TrajectoryGenerator;
+import edu.wpi.first.math.trajectory.constraint.DifferentialDriveVoltageConstraint;
 import edu.wpi.first.math.util.Units;
 import edu.wpi.first.wpilibj.Timer;
+import frc.robot.Constants;
 import frc.robot.Robot;
 
 public class AutoCommand {
 
     public static Command trajectoryCommand(double linearMotion, double angle){
+        var autoVoltageConstraint = new DifferentialDriveVoltageConstraint(
+            new SimpleMotorFeedforward(
+                Constants.kV,
+                Constants.kS,
+                Constants.kA
+            ),
+            Robot.drivetrain.getKinematics(),
+            10
+        );
         TrajectoryConfig config = new TrajectoryConfig(2, Units.feetToMeters(2));
         config.setKinematics(Robot.drivetrain.getKinematics());
+        config.addConstraint(autoVoltageConstraint);
 
         Trajectory trajectory = TrajectoryGenerator.generateTrajectory(
             Arrays.asList(new Pose2d(), new Pose2d(0,linearMotion, new Rotation2d(angle))), 

@@ -92,8 +92,8 @@ public class Drivetrain extends SubsystemBase{
         ); 
     }
 
-    public double getHeading(){
-        return gyro.getRotation2d().getDegrees();
+    public Rotation2d getHeading(){
+        return gyro.getRotation2d();
     }
 
     public void trajSetOutput(double leftVolts, double rightVolts){
