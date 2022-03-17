@@ -10,7 +10,7 @@ import edu.wpi.first.math.kinematics.DifferentialDriveKinematics;
 import edu.wpi.first.math.kinematics.DifferentialDriveOdometry;
 import edu.wpi.first.math.kinematics.DifferentialDriveWheelSpeeds;
 import edu.wpi.first.math.util.Units;
-import edu.wpi.first.wpilibj.SPI;
+import edu.wpi.first.wpilibj.SerialPort;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import com.kauailabs.navx.frc.AHRS;
 
@@ -29,10 +29,10 @@ public class Drivetrain extends SubsystemBase{
     private RelativeEncoder rightDrivetrain;
     private RelativeEncoder leftDrivetrain;
 
-    private AHRS gyro = new AHRS(SPI.Port.kMXP);
+    private AHRS gyro = new AHRS(SerialPort.Port.kUSB);
 
     private DifferentialDriveKinematics kinematics = new DifferentialDriveKinematics(Units.inchesToMeters(19.25));
-    private Pose2d pose;
+    private Pose2d pose = new Pose2d();
     private DifferentialDriveOdometry odometry = new DifferentialDriveOdometry(getHeading(), pose);
     private SimpleMotorFeedforward feedforward = new SimpleMotorFeedforward(Constants.kS, Constants.kV);
     
@@ -68,7 +68,7 @@ public class Drivetrain extends SubsystemBase{
     }
 
     public void setLeftDrivetrain(double speed){
-        motorLeft0.set(speed);
+        motorLeft0.set(-speed);
         motorLeft1.set(speed);
     }
 

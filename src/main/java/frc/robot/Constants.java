@@ -67,7 +67,7 @@ public class Constants {
     public static final double HORIZONTAL_INTAKE_SPEED = -.75;
     public static final double VERTICAL_INTAKE_SPEED = 1;
     public static final double INTAKE_WHEEL_SPEED = -.1;
-    public static final double kV = 1;
-    public static final double kS = 1;
-    public static final double kP = 1;
+    public static final double kV = 0.34464;
+    public static final double kS = 0.63969;
+    public static final double kP = 3.9966;
 }

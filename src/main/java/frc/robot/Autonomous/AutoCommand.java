@@ -22,7 +22,7 @@ public class AutoCommand {
         config.setKinematics(Robot.drivetrain.getKinematics());
 
         Trajectory trajectory = TrajectoryGenerator.generateTrajectory(
-            Arrays.asList(new Pose2d(), new Pose2d(0,linearMotion, new Rotation2d(angle))), 
+            Arrays.asList(new Pose2d(0.0,0.0,new Rotation2d(0)), new Pose2d(0.0,linearMotion, new Rotation2d(angle))), 
             config
         );
 
@@ -56,7 +56,7 @@ public class AutoCommand {
         Robot.intake.setHorizontalIntake(speed);
     }
 
-    public static void limelightShoot()
+    public static void limelightShoot(double power)
     {
         double degOff = Robot.limelight.getTX();
         while(Math.abs(degOff) > 1 && Robot.limelight.getTV() != 0)
@@ -66,9 +66,11 @@ public class AutoCommand {
             Robot.drivetrain.setRightDrivetrain(speed);
             degOff = Robot.limelight.getTX();
         }
-        Robot.shooter.setShooterMotor(1);
+        Robot.drivetrain.setLeftDrivetrain(0);
+        Robot.drivetrain.setRightDrivetrain(0);
+        Robot.shooter.setShooterMotor(power);
         Timer.delay(2);
-        Robot.intake.setVerticalIntake(1);
+        Robot.intake.setVerticalIntake(-1);
         Timer.delay(.5);
         Robot.intake.setVerticalIntake(0);
         Robot.shooter.setShooterMotor(0);

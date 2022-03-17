@@ -29,13 +29,13 @@ public class ClimbersCom extends CommandBase{
         // }
 
         if(controller1_leftTrigger){
-            Robot.climbers.setLeftClimber(-.5);
-            Robot.climbers.setRightClimber(-.5);
+            Robot.climbers.setLeftClimber(-.75);
+            Robot.climbers.setRightClimber(-.75);
             //Robot.climbers.encoderMatch(.2, -1);
         } else if (controller1_leftBumper) {
             //Robot.climbers.encoderMatch(.2, 1);
-            Robot.climbers.setLeftClimber(.5);
-            Robot.climbers.setRightClimber(.5);
+            Robot.climbers.setLeftClimber(.75);
+            Robot.climbers.setRightClimber(.75);
         } else {
             Robot.climbers.setLeftClimber(controller1_leftJoystickY);
             Robot.climbers.setRightClimber(controller1_rightJoystickY);
