@@ -29,20 +29,20 @@ public class LightStrip extends SubsystemBase {
       for(int j = 0; j < ledBuffer.getLength(); j++){
         ledBuffer.setHSV(j, greenHue, sat, 255);
         Timer.delay(time);
-        led.setData(ledBuffer);
       }
+      led.setData(ledBuffer);
       
       for(int k = 0; k < ledBuffer.getLength(); k++){
         ledBuffer.setHSV(k, yellowHue, sat, 255);
         Timer.delay(time);
-        led.setData(ledBuffer);
       }
+      led.setData(ledBuffer);
 
       for(int k = 0; k < ledBuffer.getLength(); k++){
         ledBuffer.setHSV(k, 250, sat, 255);
         Timer.delay(time);
-        led.setData(ledBuffer);
       }
+      led.setData(ledBuffer);
     }
   }
 

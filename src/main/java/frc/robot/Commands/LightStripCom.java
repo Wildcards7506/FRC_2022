@@ -3,16 +3,15 @@
 // the WPILib BSD license file in the root directory of this project.
 
 package frc.robot.Commands;
-
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Robot;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class LightStripCom extends CommandBase {
   /** Creates a new LightStrip. */
   public LightStripCom() {
     addRequirements(Robot.lightstrip);
-    SmartDashboard.putString("LightMode", "success");
+    // SmartDashboard.putString("LightMode", "success");
+    // Robot.lightstrip.preMatch()K;
   }
 
   // Called every time the scheduler runs while the command is scheduled.
