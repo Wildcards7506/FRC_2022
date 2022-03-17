@@ -69,5 +69,11 @@ public class Constants {
     public static final double INTAKE_WHEEL_SPEED = -.1;
     public static final double kV = 1;
     public static final double kS = 1;
+    public static final double kA = 1;
     public static final double kP = 1;
+    public static final double kTRACK_WIDTH_IN_METERS = 1;
+    public static final double kMAX_SPEED_MPS = 3;
+    public static final double KMAX_ACCELERATION_MPSS = 3;
+    public static final double kRAMSETE_B = 2;
+    public static final double kRAMSETE_ZETA = .7;
 }

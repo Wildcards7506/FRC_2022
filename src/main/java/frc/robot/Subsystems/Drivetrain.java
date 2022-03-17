@@ -31,7 +31,7 @@ public class Drivetrain extends SubsystemBase{
 
     private AHRS gyro = new AHRS(SPI.Port.kMXP);
 
-    private DifferentialDriveKinematics kinematics = new DifferentialDriveKinematics(Units.inchesToMeters(19.25));
+    private DifferentialDriveKinematics kinematics = new DifferentialDriveKinematics(Constants.kTRACK_WIDTH_IN_METERS);
     private Pose2d pose;
     private DifferentialDriveOdometry odometry = new DifferentialDriveOdometry(getHeading(), pose);
     private SimpleMotorFeedforward feedforward = new SimpleMotorFeedforward(Constants.kS, Constants.kV);
@@ -52,9 +52,10 @@ public class Drivetrain extends SubsystemBase{
     @Override
     public void periodic(){
         //Check Chief Delphi
-        pose = odometry.update( getHeading(), 
-                                leftDrivetrain.getPosition()/ 6 * 2 * Math.PI * Units.inchesToMeters(4), 
-                                rightDrivetrain.getPosition()/ 6 * 2 * Math.PI * Units.inchesToMeters(4)
+        odometry.update( 
+            gyro.getRotation2d(), 
+            leftDrivetrain.getDistance(), 
+            rightDrivetrain.getDistance()
         );
         setDefaultCommand(new DrivetrainCom());
     }
@@ -77,6 +78,13 @@ public class Drivetrain extends SubsystemBase{
         motorRight1.set(-speed);
     }
 
+    public void tankDriveVolts(double leftVolts, double rightVolts) {
+        motorLeft0.setVoltage(leftVolts);
+        motorLeft1.setVoltage(leftVolts);
+        motorRight0.setVoltage(rightVolts);
+        motorRight1.setVoltage(rightVolts);
+    }
+
     public DifferentialDriveWheelSpeeds getSpeeds(){
         return new DifferentialDriveWheelSpeeds(
             leftDrivetrain.getVelocity() / 6 * 2 * Math.PI * Units.inchesToMeters(4) / 60, 
@@ -84,8 +92,8 @@ public class Drivetrain extends SubsystemBase{
         ); 
     }
 
-    public Rotation2d getHeading(){
-        return Rotation2d.fromDegrees(-gyro.getAngle());
+    public double getHeading(){
+        return gyro.getRotation2d().getDegrees();
     }
 
     public void trajSetOutput(double leftVolts, double rightVolts){
@@ -110,6 +118,6 @@ public class Drivetrain extends SubsystemBase{
     }
 
     public Pose2d getPose(){
-        return pose;
+        return odometry.getPoseMeters();
     }
 }
