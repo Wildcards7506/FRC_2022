@@ -51,11 +51,10 @@ public class Drivetrain extends SubsystemBase{
 
     @Override
     public void periodic(){
-        //Check Chief Delphi
         odometry.update( 
             gyro.getRotation2d(), 
-            leftDrivetrain.getDistance(), 
-            rightDrivetrain.getDistance()
+            leftDrivetrain.getPosition() / 6 * 2 * Math.PI * Units.inchesToMeters(4), //get distance
+            rightDrivetrain.getPosition() / 6 * 2 * Math.PI * Units.inchesToMeters(4) //get distance
         );
         setDefaultCommand(new DrivetrainCom());
     }
