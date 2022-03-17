@@ -67,10 +67,10 @@ public class Constants {
     public static final double HORIZONTAL_INTAKE_SPEED = -.75;
     public static final double VERTICAL_INTAKE_SPEED = 1;
     public static final double INTAKE_WHEEL_SPEED = -.1;
-    public static final double kV = 1;
-    public static final double kS = 1;
-    public static final double kA = 1;
-    public static final double kP = 1;
+    public static final double kV = 0.34464;
+    public static final double kS = 0.63969;
+    public static final double kA = 0.57722;
+    public static final double kP = 3.9966;
     public static final double kTRACK_WIDTH_IN_METERS = 1;
     public static final double kMAX_SPEED_MPS = 3;
     public static final double KMAX_ACCELERATION_MPSS = 3;
