@@ -41,26 +41,26 @@ public class Climbers extends SubsystemBase{
         // rightClimberRotate.enableSoftLimit(CANSparkMax.SoftLimitDirection.kForward,true);
         // rightClimberRotate.enableSoftLimit(CANSparkMax.SoftLimitDirection.kReverse,true);
 
-        // leftClimber0.enableSoftLimit(CANSparkMax.SoftLimitDirection.kForward, true);
-        // leftClimber1.enableSoftLimit(CANSparkMax.SoftLimitDirection.kForward, true);
-        // rightClimber0.enableSoftLimit(CANSparkMax.SoftLimitDirection.kForward, true);
-        // rightClimber1.enableSoftLimit(CANSparkMax.SoftLimitDirection.kForward, true);
-        // leftClimber0.enableSoftLimit(CANSparkMax.SoftLimitDirection.kReverse, true);
-        // leftClimber1.enableSoftLimit(CANSparkMax.SoftLimitDirection.kReverse, true);
-        // rightClimber0.enableSoftLimit(CANSparkMax.SoftLimitDirection.kReverse, true);
-        // rightClimber1.enableSoftLimit(CANSparkMax.SoftLimitDirection.kReverse, true);
+        leftClimber0.enableSoftLimit(CANSparkMax.SoftLimitDirection.kForward, true);
+        leftClimber1.enableSoftLimit(CANSparkMax.SoftLimitDirection.kForward, true);
+        rightClimber0.enableSoftLimit(CANSparkMax.SoftLimitDirection.kForward, true);
+        rightClimber1.enableSoftLimit(CANSparkMax.SoftLimitDirection.kForward, true);
+        leftClimber0.enableSoftLimit(CANSparkMax.SoftLimitDirection.kReverse, true);
+        leftClimber1.enableSoftLimit(CANSparkMax.SoftLimitDirection.kReverse, true);
+        rightClimber0.enableSoftLimit(CANSparkMax.SoftLimitDirection.kReverse, true);
+        rightClimber1.enableSoftLimit(CANSparkMax.SoftLimitDirection.kReverse, true);
 
         // leftClimberRotate.setSoftLimit(CANSparkMax.SoftLimitDirection.kReverse, (float) -4);
         // rightClimberRotate.setSoftLimit(CANSparkMax.SoftLimitDirection.kForward, (float) 4);
 
-        // leftClimber0.setSoftLimit(CANSparkMax.SoftLimitDirection.kForward, 270);
-        // leftClimber0.setSoftLimit(CANSparkMax.SoftLimitDirection.kReverse, 0);
-        // rightClimber0.setSoftLimit(CANSparkMax.SoftLimitDirection.kForward, 270);
-        // rightClimber0.setSoftLimit(CANSparkMax.SoftLimitDirection.kReverse, 0);
-        // leftClimber1.setSoftLimit(CANSparkMax.SoftLimitDirection.kForward, 270);
-        // leftClimber1.setSoftLimit(CANSparkMax.SoftLimitDirection.kReverse, 0);
-        // rightClimber1.setSoftLimit(CANSparkMax.SoftLimitDirection.kForward, 270);
-        // rightClimber1.setSoftLimit(CANSparkMax.SoftLimitDirection.kReverse, 0);
+        leftClimber0.setSoftLimit(CANSparkMax.SoftLimitDirection.kForward, 270);
+        leftClimber0.setSoftLimit(CANSparkMax.SoftLimitDirection.kReverse, 2);
+        rightClimber0.setSoftLimit(CANSparkMax.SoftLimitDirection.kForward, 270);
+        rightClimber0.setSoftLimit(CANSparkMax.SoftLimitDirection.kReverse, 2);
+        leftClimber1.setSoftLimit(CANSparkMax.SoftLimitDirection.kForward, 270);
+        leftClimber1.setSoftLimit(CANSparkMax.SoftLimitDirection.kReverse, 2);
+        rightClimber1.setSoftLimit(CANSparkMax.SoftLimitDirection.kForward, 270);
+        rightClimber1.setSoftLimit(CANSparkMax.SoftLimitDirection.kReverse, 2);
     }
 
     public HashMap<String, Double> getEncoderValues() {
