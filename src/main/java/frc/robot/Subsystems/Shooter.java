@@ -11,7 +11,7 @@ import frc.robot.Commands.ShooterCom;
 public class Shooter extends SubsystemBase{
     private static CANSparkMax shooter;
     private static RelativeEncoder shooterEncoder;
-    private static double current = 10;
+    private static double avgCurrent = 10;
 
     public Shooter(int shoot){
         shooter = new CANSparkMax(shoot, MotorType.kBrushless);
@@ -19,21 +19,21 @@ public class Shooter extends SubsystemBase{
     }
 
     public void setShooterMotor(double speed){
-        shooter.set(-speed * (current/10));
-        if(current == 10){
-            current = shooter.getOutputCurrent();
+        shooter.set(-speed * (avgCurrent/10));
+        if(avgCurrent == 10){
+            avgCurrent = shooter.getOutputCurrent();
         }else{
-            current = (current + shooter.getOutputCurrent())/2;
+            avgCurrent = (avgCurrent + shooter.getOutputCurrent())/2;
         }
-    }
-
-    @Override
-    public void periodic(){
-        setDefaultCommand(new ShooterCom());
     }
 
     public void updateDashboard(){
         SmartDashboard.putNumber("Shooter Speed ", shooterEncoder.getVelocity());
         SmartDashboard.putNumber("Shooter Current", shooter.getOutputCurrent());
     } 
+
+    @Override
+    public void periodic(){
+        setDefaultCommand(new ShooterCom());
+    }
 }
