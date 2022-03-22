@@ -55,8 +55,8 @@ public class Robot extends TimedRobot {
   );
 
   public static final Limelight limelight = new Limelight();
-  public static final LightStrip lightstrip = new LightStrip(
-    Constants.LIGHTS_PWM_PORT,
+  public static final LightStrip lightstripR = new LightStrip(
+    2,
     Constants.NUM_LIGHTS
   );
 

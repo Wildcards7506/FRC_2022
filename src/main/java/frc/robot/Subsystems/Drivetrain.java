@@ -13,6 +13,7 @@ import edu.wpi.first.math.util.Units;
 import edu.wpi.first.wpilibj.SerialPort;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import com.kauailabs.navx.frc.AHRS;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import java.util.HashMap;
 
@@ -86,6 +87,10 @@ public class Drivetrain extends SubsystemBase{
 
     public Rotation2d getHeading(){
         return Rotation2d.fromDegrees(-gyro.getAngle());
+    }
+
+    public void updateDashboard(){
+        SmartDashboard.putNumber("Gyro Position", -gyro.getAngle());
     }
 
     public void trajSetOutput(double leftVolts, double rightVolts){

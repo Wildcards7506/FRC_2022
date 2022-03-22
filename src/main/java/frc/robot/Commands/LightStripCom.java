@@ -9,10 +9,15 @@ import frc.robot.Robot;
 public class LightStripCom extends CommandBase {
   /** Creates a new LightStrip. */
   public LightStripCom() {
-    addRequirements(Robot.lightstrip);
+    addRequirements(Robot.lightstripR);
     // SmartDashboard.putString("LightMode", "success");
-    // Robot.lightstrip.preMatch()K;
+    // Robot.lightstripR.preMatch();
   }
+
+  // @Override
+  // public void initialize() {
+  //   Robot.lightstripR.preMatch();
+  // }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override

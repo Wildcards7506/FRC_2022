@@ -40,13 +40,13 @@ public class ShooterCom extends CommandBase{
             prev_controller1_buttonY = controller1_buttonY;
 
             if(controller1_buttonA == true){
-                Robot.shooter.setShooterMotor(1);
-            }else if(controller1_buttonB == true){
-                Robot.shooter.setShooterMotor(.8);
-            }else if(controller1_buttonX == true){
                 Robot.shooter.setShooterMotor(.6);
-            }else if(controller1_buttonY == true){
+            }else if(controller1_buttonB == true){
                 Robot.shooter.setShooterMotor(.5);
+            }else if(controller1_buttonX == true){
+                Robot.shooter.setShooterMotor(.32);
+            }else if(controller1_buttonY == true){
+                Robot.shooter.setShooterMotor(.25);
             }else{
                 Robot.shooter.setShooterMotor(0);
             }

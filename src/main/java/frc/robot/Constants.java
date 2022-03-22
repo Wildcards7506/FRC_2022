@@ -24,8 +24,7 @@ public class Constants {
     public static final int INTAKE_LIFT = 5;
 
     //Lights
-    public static final int LIGHTS_PWM_PORT = 3;
-    public static final int NUM_LIGHTS = 79;
+    public static final int NUM_LIGHTS = 57;
 
     //Controller Assignments
     public static final int DRIVER_CONTROLLER_0 = 0;
@@ -63,9 +62,9 @@ public class Constants {
     public static final double CLIMBER_ROTATION_STATIC = -.02;
     public static final double MAX_TURN_SPEED = 1; // Min = 0, Max = 1;
     public static final double LEFT_RIGHT_TRIM = -.1; // Min = -1, Max = 1;+
-    public static final double INTAKE_LIFT_SPEED = .4;
-    public static final double HORIZONTAL_INTAKE_SPEED = -.75;
-    public static final double VERTICAL_INTAKE_SPEED = 1;
+    public static final double INTAKE_LIFT_SPEED = .6;
+    public static final double HORIZONTAL_INTAKE_SPEED = -.8;
+    public static final double VERTICAL_INTAKE_SPEED = .3;
     public static final double INTAKE_WHEEL_SPEED = -.1;
     public static final double kV = 0.34464;
     public static final double kS = 0.63969;

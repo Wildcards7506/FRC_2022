@@ -49,10 +49,10 @@ public class LightStrip extends SubsystemBase {
   public void idle(int color){
     if(color == 0){
       for(int k = 0; k < ledBuffer.getLength(); k++){
-        ledBuffer.setHSV(k, 0, 255, 255);
+        ledBuffer.setHSV(k, 110, 255, 255);
         led.setData(ledBuffer);
       }  
-    } else if (color == 1){
+    } else {
       for(int k = 0; k < ledBuffer.getLength(); k++){
         ledBuffer.setHSV(k, 110, 255, 255);
         led.setData(ledBuffer);

@@ -13,6 +13,7 @@ import edu.wpi.first.math.trajectory.TrajectoryConfig;
 import edu.wpi.first.math.trajectory.TrajectoryGenerator;
 import edu.wpi.first.math.util.Units;
 import edu.wpi.first.wpilibj.Timer;
+import frc.robot.Constants;
 import frc.robot.Robot;
 
 public class AutoCommand {
@@ -54,6 +55,20 @@ public class AutoCommand {
 
     public static void runIntake(double speed){
         Robot.intake.setHorizontalIntake(speed);
+    }
+
+    public static void lowerIntake(){
+        Robot.intake.setIntakeLift(-Constants.INTAKE_LIFT_SPEED);
+        Timer.delay(1);
+        Robot.intake.setIntakeLift(0);
+    }
+    
+    public static void drive(double power, double time) {
+        Robot.drivetrain.setRightDrivetrain(power);
+        Robot.drivetrain.setLeftDrivetrain(power);
+        Timer.delay(time);
+        Robot.drivetrain.setRightDrivetrain(0);
+        Robot.drivetrain.setLeftDrivetrain(0);
     }
 
     public static void limelightShoot(double power)

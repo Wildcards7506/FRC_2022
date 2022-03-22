@@ -43,5 +43,6 @@ public class ClimbersCom extends CommandBase{
 
         Robot.climbers.setClimberRotation(controller1_dpad == 180 ? Constants.CLIMBER_ROTATION_SPEED : (controller1_dpad == 0 ? -Constants.CLIMBER_ROTATION_SPEED : Constants.CLIMBER_ROTATION_STATIC));
         Robot.climbers.updateDashboard();
+        //if Robot.climbers.
     }
 }

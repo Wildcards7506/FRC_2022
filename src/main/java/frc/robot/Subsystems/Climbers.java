@@ -105,6 +105,10 @@ public class Climbers extends SubsystemBase{
         this.setRightClimber(direction - ((encoderDifference * speed) > 1 ? (encoderDifference * speed) : 1));
     }
 
+    public double getRightEncoder(){
+        return rightRotateEncoder.getPosition();
+    }
+
     @Override
     public void periodic(){
         setDefaultCommand(new ClimbersCom());
