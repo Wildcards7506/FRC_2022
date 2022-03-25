@@ -71,6 +71,17 @@ public class AutoCommand {
         Robot.drivetrain.setLeftDrivetrain(0);
     }
 
+    public static void rotate(double angle){
+        double degOff = Robot.drivetrain.getAngle();
+        while(Math.abs(degOff) > 1)
+        {
+            double speed = .15 * degOff/(Math.abs(degOff));
+            Robot.drivetrain.setLeftDrivetrain(-speed);
+            Robot.drivetrain.setRightDrivetrain(speed);
+            degOff = Robot.drivetrain.getAngle();
+        }
+    }
+
     public static void limelightShoot(double power)
     {
         double degOff = Robot.limelight.getTX();

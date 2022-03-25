@@ -5,15 +5,20 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj.TimedRobot;
+import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
-import frc.robot.Autonomous.AutoSequence;
+import frc.robot.Autonomous.TwoBallAuto;
+import frc.robot.Autonomous.OneBallAuto;
+import frc.robot.Autonomous.ThreeBallAuto;
 import frc.robot.Subsystems.Climbers;
 import frc.robot.Subsystems.Drivetrain;
 import frc.robot.Subsystems.Intake;
 import frc.robot.Subsystems.Limelight;
 import frc.robot.Subsystems.Shooter;
 import frc.robot.Subsystems.LightStrip;
+
 
 /**
  * The VM is configured to automatically run this class, and to call the functions corresponding to
@@ -22,11 +27,13 @@ import frc.robot.Subsystems.LightStrip;
  * project.
  */
 public class Robot extends TimedRobot {
-  // private static final String kDefaultAuto = "Default";
-  // private static final String kCustomAuto = "My Auto";
-  // private String m_autoSelected;
-  //private final SendableChooser<String> m_chooser = new SendableChooser<>();
-
+  //Auto Commands & Chooser
+  private Command oneBallAuto = new OneBallAuto();
+  private Command twoBallAuto = new TwoBallAuto();
+  private Command threeBallAuto = new ThreeBallAuto();
+  private final SendableChooser<Command> m_chooser = new SendableChooser<>();
+  private Command autoSequence;
+  
   //Subsystem Declarations
   public static final Drivetrain drivetrain = new Drivetrain(
     Constants.LEFT_DRIVE_TRAIN_0,
@@ -55,6 +62,7 @@ public class Robot extends TimedRobot {
   );
 
   public static final Limelight limelight = new Limelight();
+
   public static final LightStrip lightstripR = new LightStrip(
     2,
     Constants.NUM_LIGHTS
@@ -64,14 +72,18 @@ public class Robot extends TimedRobot {
   public static final Controller controller0 = new Controller(Constants.DRIVER_CONTROLLER_0);
   public static final Controller controller1 = new Controller(Constants.DRIVER_CONTROLLER_1);
 
-  //command
-  private Command autoSequence;
+
   /**
    * This function is run when the robot is first started up and should be used for any
    * initialization code.
    */
   @Override
   public void robotInit() {
+    m_chooser.setDefaultOption("One Ball Auto", oneBallAuto);
+    m_chooser.addOption("Two Ball Auto", twoBallAuto);
+    m_chooser.addOption("Three Ball Auto", threeBallAuto);
+    
+    SmartDashboard.putData(m_chooser);
   }
 
   /**
@@ -86,20 +98,16 @@ public class Robot extends TimedRobot {
     CommandScheduler.getInstance().run();
   }
 
-  /**
-   * This autonomous (along with the chooser code above) shows how to select between different
-   * autonomous modes using the dashboard. The sendable chooser code works with the Java
-   * SmartDashboard. If you prefer the LabVIEW Dashboard, remove all of the chooser code and
-   * uncomment the getString line to get the auto name from the text box below the Gyro
-   *
-   * <p>You can add additional auto modes by adding additional comparisons to the switch structure
-   * below with additional strings. If using the SendableChooser make sure to add them to the
-   * chooser code above as well.
-   */
+  public Command getAutonomousCommand(){
+    return m_chooser.getSelected();
+  }
+
   @Override
   public void autonomousInit() {
-    autoSequence = new AutoSequence();
-    autoSequence.schedule();
+    autoSequence = getAutonomousCommand();
+    if (autoSequence != null){
+      autoSequence.schedule();
+    }
   }
 
   /** This function is called periodically during autonomous. */
@@ -109,7 +117,9 @@ public class Robot extends TimedRobot {
   /** This function is called once when teleop is enabled. */
   @Override
   public void teleopInit() {
-    //m_autonomousCommand.cancel();
+    if (autoSequence != null){
+      autoSequence.cancel();
+    }
   }
 
   /** This function is called periodically during operator control. */

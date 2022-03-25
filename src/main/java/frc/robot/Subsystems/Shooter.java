@@ -6,6 +6,7 @@ import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.robot.Robot;
 import frc.robot.Commands.ShooterCom;
 
 public class Shooter extends SubsystemBase{
@@ -25,6 +26,28 @@ public class Shooter extends SubsystemBase{
         }else{
             avgCurrent = (avgCurrent + shooter.getOutputCurrent())/2;
         }
+    }
+
+    public void limelightShoot(double power)
+    {
+        shooter.set(power);
+        double degOff = Robot.limelight.getTX();
+        if(Math.abs(degOff) > 1 && Robot.limelight.getTV() != 0)
+        {
+            double speed = .15 * degOff/(Math.abs(degOff));
+            Robot.drivetrain.setLeftDrivetrain(-speed);
+            Robot.drivetrain.setRightDrivetrain(speed);
+            degOff = Robot.limelight.getTX();
+        }
+    }
+
+    public double getCurrent(double lastCurrent){
+        double stateCurrent;
+        stateCurrent = shooter.getOutputCurrent();
+        if (lastCurrent < stateCurrent){
+            lastCurrent = stateCurrent;
+        }
+        return lastCurrent;
     }
 
     public void updateDashboard(){

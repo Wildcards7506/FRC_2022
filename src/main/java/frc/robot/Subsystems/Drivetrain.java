@@ -68,6 +68,10 @@ public class Drivetrain extends SubsystemBase{
         return encoderMap;
     }
 
+    public double getAngle(){
+        return -gyro.getAngle();
+    }
+
     public void setLeftDrivetrain(double speed){
         motorLeft0.set(-speed);
         motorLeft1.set(speed);
