@@ -6,8 +6,8 @@ public class OneBallAuto extends SequentialCommandGroup {
     
     public OneBallAuto(){
         AutoCommand.lowerIntake();
-        AutoCommand.drive(.2, .3);
-        AutoCommand.limelightShoot(.5);
+        AutoCommand.drive(.2, .4);
+        AutoCommand.limelightShoot(.60);
         AutoCommand.drive(.2, 1);
     }
 }

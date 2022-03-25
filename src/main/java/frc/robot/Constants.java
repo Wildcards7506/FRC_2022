@@ -64,7 +64,7 @@ public class Constants {
     public static final double LEFT_RIGHT_TRIM = -.1; // Min = -1, Max = 1;+
     public static final double INTAKE_LIFT_SPEED = .20;
     public static final double HORIZONTAL_INTAKE_SPEED = -.8;
-    public static final double VERTICAL_INTAKE_SPEED = .3;
+    public static final double VERTICAL_INTAKE_SPEED = 1;
     public static final double INTAKE_WHEEL_SPEED = -.1;
     public static final double kV = 0.34464;
     public static final double kS = 0.63969;

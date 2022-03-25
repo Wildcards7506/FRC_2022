@@ -26,7 +26,7 @@ public class ShooterCom extends CommandBase{
         boolean controller1_buttonB = Robot.controller1.getButton(Constants.BUTTON_B);
         boolean controller1_buttonX = Robot.controller1.getButton(Constants.BUTTON_X);
         boolean controller1_buttonY = Robot.controller1.getButton(Constants.BUTTON_Y);
-        double currentDraw = 0.0;
+        // double currentDraw = 0.0;
         
         if(
             controller1_buttonA != prev_controller1_buttonA ||
@@ -41,19 +41,14 @@ public class ShooterCom extends CommandBase{
             prev_controller1_buttonY = controller1_buttonY;
 
             if(controller1_buttonA == true){
-                Robot.shooter.setShooterMotor(.6);
-                currentDraw = Robot.shooter.getCurrent(currentDraw);
+                Robot.shooter.setShooterMotor(1);
             }else if(controller1_buttonB == true){
-                Robot.shooter.setShooterMotor(.5);
-                currentDraw = Robot.shooter.getCurrent(currentDraw);
+                Robot.shooter.setShooterMotor(.8);
             }else if(controller1_buttonX == true){
-                Robot.shooter.setShooterMotor(.32);
-                currentDraw = Robot.shooter.getCurrent(currentDraw);
+                Robot.shooter.setShooterMotor(.6);
             }else if(controller1_buttonY == true){
-                Robot.shooter.limelightShoot(0.6);
-                currentDraw = Robot.shooter.getCurrent(currentDraw);
+                Robot.shooter.setShooterMotor(.35);
             }else{
-                currentDraw = 0;
                 Robot.shooter.setShooterMotor(0);
             }
         }

@@ -5,13 +5,11 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj.TimedRobot;
-import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
-import frc.robot.Autonomous.TwoBallAuto;
+// import frc.robot.Autonomous.TwoBallAuto;
 import frc.robot.Autonomous.OneBallAuto;
-import frc.robot.Autonomous.ThreeBallAuto;
+// import frc.robot.Autonomous.ThreeBallAuto;
 import frc.robot.Subsystems.Climbers;
 import frc.robot.Subsystems.Drivetrain;
 import frc.robot.Subsystems.Intake;
@@ -26,14 +24,7 @@ import frc.robot.Subsystems.LightStrip;
  * the package after creating this project, you must also update the build.gradle file in the
  * project.
  */
-public class Robot extends TimedRobot {
-  //Auto Commands & Chooser
-  private Command oneBallAuto = new OneBallAuto();
-  private Command twoBallAuto = new TwoBallAuto();
-  private Command threeBallAuto = new ThreeBallAuto();
-  private final SendableChooser<Command> m_chooser = new SendableChooser<>();
-  private Command autoSequence;
-  
+public class Robot extends TimedRobot {  
   //Subsystem Declarations
   public static final Drivetrain drivetrain = new Drivetrain(
     Constants.LEFT_DRIVE_TRAIN_0,
@@ -72,18 +63,14 @@ public class Robot extends TimedRobot {
   public static final Controller controller0 = new Controller(Constants.DRIVER_CONTROLLER_0);
   public static final Controller controller1 = new Controller(Constants.DRIVER_CONTROLLER_1);
 
-
+  //Auto Command
+  private Command autoSequence;
   /**
    * This function is run when the robot is first started up and should be used for any
    * initialization code.
    */
   @Override
   public void robotInit() {
-    m_chooser.setDefaultOption("One Ball Auto", oneBallAuto);
-    m_chooser.addOption("Two Ball Auto", twoBallAuto);
-    m_chooser.addOption("Three Ball Auto", threeBallAuto);
-    
-    SmartDashboard.putData(m_chooser);
   }
 
   /**
@@ -98,16 +85,10 @@ public class Robot extends TimedRobot {
     CommandScheduler.getInstance().run();
   }
 
-  public Command getAutonomousCommand(){
-    return m_chooser.getSelected();
-  }
-
   @Override
   public void autonomousInit() {
-    autoSequence = getAutonomousCommand();
-    if (autoSequence != null){
-      autoSequence.schedule();
-    }
+    autoSequence = new OneBallAuto();
+    autoSequence.schedule();
   }
 
   /** This function is called periodically during autonomous. */
@@ -117,9 +98,6 @@ public class Robot extends TimedRobot {
   /** This function is called once when teleop is enabled. */
   @Override
   public void teleopInit() {
-    if (autoSequence != null){
-      autoSequence.cancel();
-    }
   }
 
   /** This function is called periodically during operator control. */

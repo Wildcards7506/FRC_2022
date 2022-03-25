@@ -12,7 +12,6 @@ import frc.robot.Commands.ShooterCom;
 public class Shooter extends SubsystemBase{
     private static CANSparkMax shooter;
     private static RelativeEncoder shooterEncoder;
-    private static double avgCurrent = 10;
 
     public Shooter(int shoot){
         shooter = new CANSparkMax(shoot, MotorType.kBrushless);
@@ -20,17 +19,12 @@ public class Shooter extends SubsystemBase{
     }
 
     public void setShooterMotor(double speed){
-        shooter.set(-speed * (avgCurrent/10));
-        if(avgCurrent == 10){
-            avgCurrent = shooter.getOutputCurrent();
-        }else{
-            avgCurrent = (avgCurrent + shooter.getOutputCurrent())/2;
-        }
+        shooter.set(-speed);
     }
 
     public void limelightShoot(double power)
     {
-        shooter.set(power);
+        shooter.set(-power);
         double degOff = Robot.limelight.getTX();
         if(Math.abs(degOff) > 1 && Robot.limelight.getTV() != 0)
         {

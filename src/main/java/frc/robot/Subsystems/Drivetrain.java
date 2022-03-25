@@ -73,7 +73,7 @@ public class Drivetrain extends SubsystemBase{
     }
 
     public void setLeftDrivetrain(double speed){
-        motorLeft0.set(-speed);
+        motorLeft0.set(speed);
         motorLeft1.set(speed);
     }
 
