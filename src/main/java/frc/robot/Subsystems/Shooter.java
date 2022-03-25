@@ -42,8 +42,7 @@ public class Shooter extends SubsystemBase{
     }
 
     public double getCurrent(double lastCurrent){
-        double stateCurrent;
-        stateCurrent = shooter.getOutputCurrent();
+        double stateCurrent = shooter.getOutputCurrent();
         if (lastCurrent < stateCurrent){
             lastCurrent = stateCurrent;
         }

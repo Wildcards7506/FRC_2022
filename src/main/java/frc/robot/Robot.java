@@ -31,7 +31,7 @@ public class Robot extends TimedRobot {
   private Command oneBallAuto = new OneBallAuto();
   private Command twoBallAuto = new TwoBallAuto();
   private Command threeBallAuto = new ThreeBallAuto();
-  private final SendableChooser<Command> m_chooser = new SendableChooser<>();
+  private final SendableChooser<Command> m_chooser = new SendableChooser<Command>();
   private Command autoSequence;
   
   //Subsystem Declarations
@@ -98,13 +98,10 @@ public class Robot extends TimedRobot {
     CommandScheduler.getInstance().run();
   }
 
-  public Command getAutonomousCommand(){
-    return m_chooser.getSelected();
-  }
-
+  /** This function is called once when autonomous is enabled. */
   @Override
   public void autonomousInit() {
-    autoSequence = getAutonomousCommand();
+    autoSequence = m_chooser.getSelected();
     if (autoSequence != null){
       autoSequence.schedule();
     }

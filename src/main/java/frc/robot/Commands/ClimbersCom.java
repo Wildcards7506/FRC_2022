@@ -19,15 +19,7 @@ public class ClimbersCom extends CommandBase{
         boolean controller1_leftBumper = Robot.controller1.getButton(Constants.LEFT_BUMPER);
 
         double controller1_dpad = Robot.controller1.getPOV();
-                
-        // prev_controller1_leftJoystickY = controller1_leftJoystickY;
-        // prev_controller1_rightJoystickY = controller1_rightJoystickY;
-        // if(Robot.climbers.getRightEncoder() > 4){
-        //     if(Robot.climbers.getRightExtension() < 213){
-        //         Robot.climbers.encoderMatch(Constants.FULL_SPEED);
-        //     }
-        // }
-
+        
         if(controller1_leftTrigger){
             Robot.climbers.setLeftClimber(-1);
             Robot.climbers.setRightClimber(-1);
