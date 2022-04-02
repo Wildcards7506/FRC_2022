@@ -2,9 +2,9 @@ package frc.robot.Autonomous;
 
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 
-public class OneBallAuto extends SequentialCommandGroup {
+public class ShooterOneBallAuto extends SequentialCommandGroup {
     
-    public OneBallAuto(){
+    public ShooterOneBallAuto(){
         AutoCommand.lowerIntake();
         AutoCommand.drive(.2, .4);
         AutoCommand.limelightShoot(.60);

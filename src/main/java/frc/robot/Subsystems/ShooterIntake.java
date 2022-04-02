@@ -7,20 +7,20 @@ import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
-import frc.robot.Commands.IntakeCom;
+import frc.robot.Commands.ShooterIntakeCom;
 
 // import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
-public class Intake extends SubsystemBase{
+public class ShooterIntake extends SubsystemBase{
 
     private VictorSPX horizontalIntake;
-    private static CANSparkMax intakeLift;
+    private CANSparkMax intakeLift;
     private VictorSPX verticalIntake;
     // private RelativeEncoder intakeLiftEncoder;
 
 
 
-    public Intake (int horIntake, int vertIntake, int inLift) {
+    public ShooterIntake (int horIntake, int vertIntake, int inLift) {
         horizontalIntake = new VictorSPX(horIntake);
         verticalIntake = new VictorSPX(vertIntake);
         intakeLift = new CANSparkMax(inLift, MotorType.kBrushless);
@@ -41,6 +41,6 @@ public class Intake extends SubsystemBase{
 
     @Override
     public void periodic(){
-        setDefaultCommand(new IntakeCom());
+        setDefaultCommand(new ShooterIntakeCom());
     }
 }

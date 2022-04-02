@@ -23,6 +23,11 @@ public class Constants {
     public static final int HORIZONTAL_INTAKE = 17;
     public static final int INTAKE_LIFT = 5;
 
+    //Dumper
+    public static final int DUMPER_INTAKE = 0;
+    public static final int LEFT_DUMPER_LIFT = 0;
+    public static final int RIGHT_DUMPER_LIFT = 0;
+
     //Lights
     public static final int NUM_LIGHTS = 57;
 
@@ -65,7 +70,8 @@ public class Constants {
     public static final double INTAKE_LIFT_SPEED = .20;
     public static final double HORIZONTAL_INTAKE_SPEED = -.8;
     public static final double VERTICAL_INTAKE_SPEED = 1;
-    public static final double INTAKE_WHEEL_SPEED = -.1;
+    public static final double DUMPER_INTAKE_SPEED = .5;
+    public static final double DUMPER_LIFT_SPEED = .2;
     public static final double kV = 0.34464;
     public static final double kS = 0.63969;
     public static final double kP = 3.9966;

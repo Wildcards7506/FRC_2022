@@ -4,7 +4,7 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Constants;
 import frc.robot.Robot;
 
-public class IntakeCom extends CommandBase{
+public class ShooterIntakeCom extends CommandBase{
 
     // private boolean prev_controller0_leftBumper = false;
     // private boolean prev_controller0_leftTrigger = false;
@@ -12,8 +12,8 @@ public class IntakeCom extends CommandBase{
     // private boolean prev_controller1_rightTrigger = false;
     // private int prev_controller1_dpad = -1;
 
-    public IntakeCom(){
-        addRequirements(Robot.intake);
+    public ShooterIntakeCom(){
+        // addRequirements(Robot.shooterIntake);
     }
 
     @Override
@@ -43,8 +43,8 @@ public class IntakeCom extends CommandBase{
         //     prev_controller1_rightBumper = controller1_rightBumper;
         //     prev_controller1_rightTrigger = controller1_rightTrigger;
 
-            Robot.intake.setVerticalIntake(controller0_rightBumper ? Constants.VERTICAL_INTAKE_SPEED : (controller0_rightTrigger ? -Constants.VERTICAL_INTAKE_SPEED : 0));
-            Robot.intake.setHorizontalIntake(controller1_rightTrigger ? Constants.HORIZONTAL_INTAKE_SPEED : (controller1_rightBumper ? -Constants.HORIZONTAL_INTAKE_SPEED : 0));
-            Robot.intake.setIntakeLift(controller0_leftBumper ? Constants.INTAKE_LIFT_SPEED : (controller0_leftTrigger ? -Constants.INTAKE_LIFT_SPEED : 0));
+            // Robot.shooterIntake.setVerticalIntake(controller0_rightBumper ? Constants.VERTICAL_INTAKE_SPEED : (controller0_rightTrigger ? -Constants.VERTICAL_INTAKE_SPEED : 0));
+            // Robot.shooterIntake.setHorizontalIntake(controller1_rightTrigger ? Constants.HORIZONTAL_INTAKE_SPEED : (controller1_rightBumper ? -Constants.HORIZONTAL_INTAKE_SPEED : 0));
+            // Robot.shooterIntake.setIntakeLift(controller0_leftBumper ? Constants.INTAKE_LIFT_SPEED : (controller0_leftTrigger ? -Constants.INTAKE_LIFT_SPEED : 0));
         }
     }

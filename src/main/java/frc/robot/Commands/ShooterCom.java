@@ -12,7 +12,7 @@ public class ShooterCom extends CommandBase{
     private boolean prev_controller1_buttonY = false;
 
     public ShooterCom(){
-        addRequirements(Robot.shooter);
+        // addRequirements(Robot.shooter);
     }
 
     @Override
@@ -40,18 +40,19 @@ public class ShooterCom extends CommandBase{
             prev_controller1_buttonX = controller1_buttonX;
             prev_controller1_buttonY = controller1_buttonY;
 
-            if(controller1_buttonA == true){
-                Robot.shooter.setShooterMotor(1);
-            }else if(controller1_buttonB == true){
-                Robot.shooter.setShooterMotor(.8);
-            }else if(controller1_buttonX == true){
-                Robot.shooter.setShooterMotor(.6);
-            }else if(controller1_buttonY == true){
-                Robot.shooter.setShooterMotor(.35);
-            }else{
-                Robot.shooter.setShooterMotor(0);
-            }
-        }
-        Robot.shooter.updateDashboard();
+        //     if(controller1_buttonA == true){
+        //         Robot.shooter.setShooterMotor(1);
+        //     }else if(controller1_buttonB == true){
+        //         Robot.shooter.setShooterMotor(.8);
+        //     }else if(controller1_buttonX == true){
+        //         Robot.shooter.setShooterMotor(.6);
+        //     }else if(controller1_buttonY == true){
+        //         Robot.shooter.setShooterMotor(.35);
+        //     }else{
+        //         Robot.shooter.setShooterMotor(0);
+        //     }
+        // }
+        // Robot.shooter.updateDashboard();
     }
+}
 }

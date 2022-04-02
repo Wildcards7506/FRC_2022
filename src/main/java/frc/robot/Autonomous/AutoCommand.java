@@ -22,20 +22,20 @@ public class AutoCommand {
     {
         Robot.shooter.setShooterMotor(1);
         Timer.delay(2);
-        Robot.intake.setVerticalIntake(1);
+        Robot.shooterIntake.setVerticalIntake(1);
         Timer.delay(.5);
-        Robot.intake.setVerticalIntake(0);
+        Robot.shooterIntake.setVerticalIntake(0);
         Robot.shooter.setShooterMotor(0);
     }
 
     public static void runIntake(double speed){
-        Robot.intake.setHorizontalIntake(speed);
+        Robot.shooterIntake.setHorizontalIntake(speed);
     }
 
     public static void lowerIntake(){
-        Robot.intake.setIntakeLift(-Constants.INTAKE_LIFT_SPEED);
+        Robot.shooterIntake.setIntakeLift(-Constants.INTAKE_LIFT_SPEED);
         Timer.delay(1);
-        Robot.intake.setIntakeLift(0);
+        Robot.shooterIntake.setIntakeLift(0);
     }
     
     public static void drive(double power, double time) {
@@ -71,9 +71,25 @@ public class AutoCommand {
         Robot.drivetrain.setRightDrivetrain(0);
         Robot.shooter.setShooterMotor(power);
         Timer.delay(4);
-        Robot.intake.setVerticalIntake(-1);
+        Robot.shooterIntake.setVerticalIntake(-1);
         Timer.delay(.5);
-        Robot.intake.setVerticalIntake(0);
+        Robot.shooterIntake.setVerticalIntake(0);
         Robot.shooter.setShooterMotor(0);
+    }
+
+    public static void runDumperLift(boolean up) {
+        if (up) {
+            Robot.dumper.setLift(Constants.DUMPER_LIFT_SPEED);
+            Timer.delay(.5);
+            Robot.dumper.setLift(0);
+        } else {
+            Robot.dumper.setLift(-Constants.DUMPER_LIFT_SPEED);
+            Timer.delay(.5);
+            Robot.dumper.setLift(0);
+        }
+    }
+
+    public static void runDumperIntake(double speed) {
+        Robot.dumper.setIntake(speed);
     }
 }

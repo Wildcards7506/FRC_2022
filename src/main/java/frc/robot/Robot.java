@@ -8,13 +8,14 @@ import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 // import frc.robot.Autonomous.TwoBallAuto;
-import frc.robot.Autonomous.OneBallAuto;
+import frc.robot.Autonomous.ShooterOneBallAuto;
 // import frc.robot.Autonomous.ThreeBallAuto;
 import frc.robot.Subsystems.Climbers;
 import frc.robot.Subsystems.Drivetrain;
-import frc.robot.Subsystems.Intake;
+import frc.robot.Subsystems.Dumper;
 import frc.robot.Subsystems.Limelight;
 import frc.robot.Subsystems.Shooter;
+import frc.robot.Subsystems.ShooterIntake;
 import frc.robot.Subsystems.LightStrip;
 
 
@@ -33,7 +34,13 @@ public class Robot extends TimedRobot {
     Constants.RIGHT_DRIVE_TRAIN_1
   );
 
-  public static final Intake intake = new Intake(
+  public static final Dumper dumper = new Dumper(
+    Constants.DUMPER_INTAKE,
+    Constants.LEFT_DUMPER_LIFT,
+    Constants.RIGHT_DUMPER_LIFT
+  );
+
+  public static final ShooterIntake shooterIntake = new ShooterIntake(
     Constants.HORIZONTAL_INTAKE,
     Constants.VERTICAL_INTAKE,
     Constants.INTAKE_LIFT
@@ -87,7 +94,7 @@ public class Robot extends TimedRobot {
 
   @Override
   public void autonomousInit() {
-    autoSequence = new OneBallAuto();
+    autoSequence = new ShooterOneBallAuto();
     autoSequence.schedule();
   }
 
