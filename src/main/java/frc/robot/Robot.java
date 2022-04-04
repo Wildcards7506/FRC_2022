@@ -14,8 +14,6 @@ import frc.robot.Subsystems.Climbers;
 import frc.robot.Subsystems.Drivetrain;
 import frc.robot.Subsystems.Dumper;
 import frc.robot.Subsystems.Limelight;
-import frc.robot.Subsystems.Shooter;
-import frc.robot.Subsystems.ShooterIntake;
 import frc.robot.Subsystems.LightStrip;
 
 
@@ -40,15 +38,15 @@ public class Robot extends TimedRobot {
     Constants.RIGHT_DUMPER_LIFT
   );
 
-  public static final ShooterIntake shooterIntake = new ShooterIntake(
-    Constants.HORIZONTAL_INTAKE,
-    Constants.VERTICAL_INTAKE,
-    Constants.INTAKE_LIFT
-  );
+  // public static final ShooterIntake shooterIntake = new ShooterIntake(
+  //   Constants.HORIZONTAL_INTAKE,
+  //   Constants.VERTICAL_INTAKE,
+  //   Constants.INTAKE_LIFT
+  // );
 
-  public static final Shooter shooter = new Shooter(
-    Constants.SHOOTER
-  );
+  // public static final Shooter shooter = new Shooter(
+  //   Constants.SHOOTER
+  // );
 
   public static final Climbers climbers = new Climbers(
     Constants.LEFT_CLIMBER_0,

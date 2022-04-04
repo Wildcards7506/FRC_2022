@@ -99,7 +99,7 @@ public class Climbers extends SubsystemBase{
 
     }
 
-    public void encoderMatch(double speed, int direction){
+    public void encoderMatchClimbers(double speed, int direction){
         double encoderDifference = climberEncoderRight.getPosition() - climberEncoderLeft.getPosition();
         this.setLeftClimber(direction + ((encoderDifference * speed) > 1 ? (encoderDifference * speed) : 1));
         this.setRightClimber(direction - ((encoderDifference * speed) > 1 ? (encoderDifference * speed) : 1));

@@ -17,9 +17,15 @@ public class DumperCom extends CommandBase{
         boolean controller0_leftBumper = Robot.controller0.getButton(Constants.LEFT_BUMPER);
         boolean controller0_rightBumper = Robot.controller0.getButton(Constants.RIGHT_BUMPER);
 
-        Robot.dumper.setIntake(controller0_rightBumper ? Constants.DUMPER_INTAKE_SPEED : (controller0_rightTrigger ? -Constants.DUMPER_INTAKE_SPEED : 0));
-        Robot.dumper.setLift(controller0_leftBumper ? Constants.DUMPER_LIFT_SPEED : (controller0_leftTrigger ? -Constants.DUMPER_LIFT_SPEED : 0));
+        Robot.dumper.setIntake(controller0_rightTrigger ? Constants.DUMPER_INTAKE_SPEED : (controller0_rightBumper ? Constants.DUMPER_OUTPUT_SPEED : 0));
+        Robot.dumper.setLift(controller0_leftBumper ? Constants.DUMPER_LIFT_SPEED : (controller0_leftTrigger ? Constants.DUMPER_LOWER_SPEED : 0));
+
+        // if(Robot.climbers.getRightDumperEncoder() > 4){
+        //     if(Robot.climbers.getRightExtension() < 213){
+        //         Robot.climbers.encoderMatch(Constants.FULL_SPEED);
+        //     }
+        // }
     }
 
-    
+
 }

@@ -18,25 +18,25 @@ import frc.robot.Robot;
 
 public class AutoCommand {
 
-    public static void shoot()
-    {
-        Robot.shooter.setShooterMotor(1);
-        Timer.delay(2);
-        Robot.shooterIntake.setVerticalIntake(1);
-        Timer.delay(.5);
-        Robot.shooterIntake.setVerticalIntake(0);
-        Robot.shooter.setShooterMotor(0);
-    }
+    // public static void shoot()
+    // {
+    //     Robot.shooter.setShooterMotor(1);
+    //     Timer.delay(2);
+    //     Robot.shooterIntake.setVerticalIntake(1);
+    //     Timer.delay(.5);
+    //     Robot.shooterIntake.setVerticalIntake(0);
+    //     Robot.shooter.setShooterMotor(0);
+    // }
 
-    public static void runIntake(double speed){
-        Robot.shooterIntake.setHorizontalIntake(speed);
-    }
+    // public static void runIntake(double speed){
+    //     Robot.shooterIntake.setHorizontalIntake(speed);
+    // }
 
-    public static void lowerIntake(){
-        Robot.shooterIntake.setIntakeLift(-Constants.INTAKE_LIFT_SPEED);
-        Timer.delay(1);
-        Robot.shooterIntake.setIntakeLift(0);
-    }
+    // public static void lowerIntake(){
+    //     Robot.shooterIntake.setIntakeLift(-Constants.INTAKE_LIFT_SPEED);
+    //     Timer.delay(1);
+    //     Robot.shooterIntake.setIntakeLift(0);
+    // }
     
     public static void drive(double power, double time) {
         Robot.drivetrain.setRightDrivetrain(power);
@@ -57,25 +57,25 @@ public class AutoCommand {
         }
     }   
 
-    public static void limelightShoot(double power)
-    {
-        double degOff = Robot.limelight.getTX();
-        while(Math.abs(degOff) > 1 && Robot.limelight.getTV() != 0)
-        {
-            double speed = .15 * degOff/(Math.abs(degOff));
-            Robot.drivetrain.setLeftDrivetrain(-speed);
-            Robot.drivetrain.setRightDrivetrain(speed);
-            degOff = Robot.limelight.getTX();
-        }
-        Robot.drivetrain.setLeftDrivetrain(0);
-        Robot.drivetrain.setRightDrivetrain(0);
-        Robot.shooter.setShooterMotor(power);
-        Timer.delay(4);
-        Robot.shooterIntake.setVerticalIntake(-1);
-        Timer.delay(.5);
-        Robot.shooterIntake.setVerticalIntake(0);
-        Robot.shooter.setShooterMotor(0);
-    }
+    // public static void limelightShoot(double power)
+    // {
+    //     double degOff = Robot.limelight.getTX();
+    //     while(Math.abs(degOff) > 1 && Robot.limelight.getTV() != 0)
+    //     {
+    //         double speed = .15 * degOff/(Math.abs(degOff));
+    //         Robot.drivetrain.setLeftDrivetrain(-speed);
+    //         Robot.drivetrain.setRightDrivetrain(speed);
+    //         degOff = Robot.limelight.getTX();
+    //     }
+    //     Robot.drivetrain.setLeftDrivetrain(0);
+    //     Robot.drivetrain.setRightDrivetrain(0);
+    //     Robot.shooter.setShooterMotor(power);
+    //     Timer.delay(4);
+    //     Robot.shooterIntake.setVerticalIntake(-1);
+    //     Timer.delay(.5);
+    //     Robot.shooterIntake.setVerticalIntake(0);
+    //     Robot.shooter.setShooterMotor(0);
+    // }
 
     public static void runDumperLift(boolean up) {
         if (up) {
@@ -83,7 +83,7 @@ public class AutoCommand {
             Timer.delay(.5);
             Robot.dumper.setLift(0);
         } else {
-            Robot.dumper.setLift(-Constants.DUMPER_LIFT_SPEED);
+            Robot.dumper.setLift(-.25);
             Timer.delay(.5);
             Robot.dumper.setLift(0);
         }

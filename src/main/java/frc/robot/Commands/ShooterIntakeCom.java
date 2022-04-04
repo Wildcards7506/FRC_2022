@@ -1,8 +1,8 @@
 package frc.robot.Commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.Constants;
-import frc.robot.Robot;
+// import frc.robot.Constants;
+// import frc.robot.Robot;
 
 public class ShooterIntakeCom extends CommandBase{
 
@@ -19,16 +19,16 @@ public class ShooterIntakeCom extends CommandBase{
     @Override
     public void execute(){
         //lift
-        boolean controller0_leftBumper = Robot.controller0.getButton(Constants.LEFT_BUMPER);
-        boolean controller0_leftTrigger = Robot.controller0.getTrigger(Constants.LEFT_TRIGGER);
+        // boolean controller0_leftBumper = Robot.controller0.getButton(Constants.LEFT_BUMPER);
+        // boolean controller0_leftTrigger = Robot.controller0.getTrigger(Constants.LEFT_TRIGGER);
 
-        // //vertical
-        boolean controller0_rightBumper = Robot.controller0.getButton(Constants.RIGHT_BUMPER);
-        boolean controller0_rightTrigger = Robot.controller0.getTrigger(Constants.RIGHT_TRIGGER);
+        // // //vertical
+        // boolean controller0_rightBumper = Robot.controller0.getButton(Constants.RIGHT_BUMPER);
+        // boolean controller0_rightTrigger = Robot.controller0.getTrigger(Constants.RIGHT_TRIGGER);
         
-        // //horizontal
-        boolean controller1_rightBumper = Robot.controller1.getButton(Constants.RIGHT_BUMPER);
-        boolean controller1_rightTrigger = Robot.controller1.getTrigger(Constants.RIGHT_TRIGGER);
+        // // //horizontal
+        // boolean controller1_rightBumper = Robot.controller1.getButton(Constants.RIGHT_BUMPER);
+        // boolean controller1_rightTrigger = Robot.controller1.getTrigger(Constants.RIGHT_TRIGGER);
 
         // if(
         //     controller0_dpad != prev_controller1_dpad ||

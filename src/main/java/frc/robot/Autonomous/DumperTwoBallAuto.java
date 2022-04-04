@@ -7,7 +7,7 @@ import frc.robot.Constants;
 public class DumperTwoBallAuto extends SequentialCommandGroup{
     
 public DumperTwoBallAuto() {
-    AutoCommand.runDumperLift(true);
+    AutoCommand.runDumperLift(false);
     AutoCommand.runDumperIntake(Constants.DUMPER_INTAKE_SPEED);
     AutoCommand.drive(.2, 1);
     AutoCommand.runDumperLift(true);
