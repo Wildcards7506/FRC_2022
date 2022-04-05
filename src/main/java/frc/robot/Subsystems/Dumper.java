@@ -13,18 +13,18 @@ public class Dumper extends SubsystemBase{
     private VictorSPX intake;
     private CANSparkMax leftLift;
     private CANSparkMax rightLift;
-    private RelativeEncoder leftDumperLiftEncoder;
-    private RelativeEncoder rightDumperLiftEncoder;
+    private RelativeEncoder leftLiftEncoder;
+    private RelativeEncoder rightLiftEncoder;
 
-    private double recordedEncoder;
+    private double setpoint;
 
     public Dumper(int intakeNum, int leftLiftNum, int rightLiftNum) {
         intake = new VictorSPX(intakeNum);
         leftLift = new CANSparkMax(leftLiftNum, MotorType.kBrushless);
         rightLift = new CANSparkMax(rightLiftNum, MotorType.kBrushless);
 
-        leftDumperLiftEncoder = leftLift.getEncoder();
-        rightDumperLiftEncoder = rightLift.getEncoder();
+        leftLiftEncoder = leftLift.getEncoder();
+        rightLiftEncoder = rightLift.getEncoder();
     }
 
     public void setIntake(double speed) {
@@ -33,28 +33,23 @@ public class Dumper extends SubsystemBase{
 
     public void setLift(double speed) {
         if(speed == 0 && leftLift.get() != 0){
-            recordedEncoder = leftDumperLiftEncoder.getPosition();
+            setpoint = leftLiftEncoder.getPosition();
             leftLift.set(0);
             rightLift.set(0);
-        } else if (speed == 0) {
-            if(leftDumperLiftEncoder.getPosition() > 5 + recordedEncoder || leftDumperLiftEncoder.getPosition() < recordedEncoder - 5 )
-            {
-                double diffSpeed = (recordedEncoder - leftDumperLiftEncoder.getPosition()) * -.05;
-                diffSpeed = diffSpeed > .2 ? .2 : diffSpeed;
-                leftLift.set(diffSpeed);
-                rightLift.set(-diffSpeed);
-            } else {
-                leftLift.set(0);
-                rightLift.set(0);
-            }
-        } else {
+        } else if(speed != 0) {
             leftLift.set(speed);
             rightLift.set(-speed);
+        } else {
+            double proportionalGain = .2;
+            double output = proportionalGain * (setpoint - leftLiftEncoder.getPosition());
+            output = output < .2 ? output : .2;
+            leftLift.set(output);
+            rightLift.set(-output);
         }
     }
 
     public void encoderMatchDumper(double speed, int direction){
-        double encoderDifference = rightDumperLiftEncoder.getPosition() - leftDumperLiftEncoder.getPosition();
+        double encoderDifference = rightLiftEncoder.getPosition() - leftLiftEncoder.getPosition();
         this.setLift(direction + ((encoderDifference * speed) > 1 ? (encoderDifference * speed) : 1));
         // this.setRightLift(direction - ((encoderDifference * speed) > 1 ? (encoderDifference * speed) : 1));
     }
