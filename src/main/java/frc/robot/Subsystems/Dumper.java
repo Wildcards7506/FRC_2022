@@ -5,6 +5,8 @@ import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.RelativeEncoder;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
+
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Commands.DumperCom;
 
@@ -16,8 +18,6 @@ public class Dumper extends SubsystemBase{
     private RelativeEncoder leftDumperLiftEncoder;
     private RelativeEncoder rightDumperLiftEncoder;
 
-    private double recordedEncoder;
-
     public Dumper(int intakeNum, int leftLiftNum, int rightLiftNum) {
         intake = new VictorSPX(intakeNum);
         leftLift = new CANSparkMax(leftLiftNum, MotorType.kBrushless);
@@ -25,6 +25,22 @@ public class Dumper extends SubsystemBase{
 
         leftDumperLiftEncoder = leftLift.getEncoder();
         rightDumperLiftEncoder = rightLift.getEncoder();
+
+        leftLift.enableSoftLimit(CANSparkMax.SoftLimitDirection.kForward, true);
+        leftLift.enableSoftLimit(CANSparkMax.SoftLimitDirection.kForward, true);
+        rightLift.enableSoftLimit(CANSparkMax.SoftLimitDirection.kReverse, true);
+        rightLift.enableSoftLimit(CANSparkMax.SoftLimitDirection.kReverse, true);
+
+        leftLift.setSoftLimit(CANSparkMax.SoftLimitDirection.kForward, 3);
+        leftLift.setSoftLimit(CANSparkMax.SoftLimitDirection.kReverse, -20);
+        rightLift.setSoftLimit(CANSparkMax.SoftLimitDirection.kForward, 20);
+        rightLift.setSoftLimit(CANSparkMax.SoftLimitDirection.kReverse, -3);
+    }
+
+    public void updateDashboard()
+    {
+        SmartDashboard.putNumber("Left Dumper Position", leftDumperLiftEncoder.getPosition());
+        SmartDashboard.putNumber("Right Dumper Position", rightDumperLiftEncoder.getPosition());
     }
 
     public void setIntake(double speed) {
@@ -32,25 +48,8 @@ public class Dumper extends SubsystemBase{
     }
 
     public void setLift(double speed) {
-        if(speed == 0 && leftLift.get() != 0){
-            recordedEncoder = leftDumperLiftEncoder.getPosition();
-            leftLift.set(0);
-            rightLift.set(0);
-        } else if (speed == 0) {
-            if(leftDumperLiftEncoder.getPosition() > 5 + recordedEncoder || leftDumperLiftEncoder.getPosition() < recordedEncoder - 5 )
-            {
-                double diffSpeed = (recordedEncoder - leftDumperLiftEncoder.getPosition()) * -.05;
-                diffSpeed = diffSpeed > .2 ? .2 : diffSpeed;
-                leftLift.set(diffSpeed);
-                rightLift.set(-diffSpeed);
-            } else {
-                leftLift.set(0);
-                rightLift.set(0);
-            }
-        } else {
-            leftLift.set(speed);
-            rightLift.set(-speed);
-        }
+        leftLift.set(speed);
+        rightLift.set(-speed);
     }
 
     public void encoderMatchDumper(double speed, int direction){

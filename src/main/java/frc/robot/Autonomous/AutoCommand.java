@@ -1,5 +1,7 @@
 package frc.robot.Autonomous;
 
+import java.util.HashMap;
+
 // import edu.wpi.first.wpilibj2.command.Command;
 // import edu.wpi.first.wpilibj2.command.RamseteCommand;
 
@@ -17,6 +19,8 @@ import frc.robot.Constants;
 import frc.robot.Robot;
 
 public class AutoCommand {
+
+    private static HashMap<String, Double> drivetrainEncoderValues;
 
     // public static void shoot()
     // {
@@ -42,6 +46,23 @@ public class AutoCommand {
         Robot.drivetrain.setRightDrivetrain(power);
         Robot.drivetrain.setLeftDrivetrain(power);
         Timer.delay(time);
+        Robot.drivetrain.setRightDrivetrain(0);
+        Robot.drivetrain.setLeftDrivetrain(0);
+    }
+
+    public static void drive(double distanceInInches){
+        updateEncoderValues();
+        //6:1, 4 inch radius
+        double current = 0;
+        double target = (distanceInInches / (2 * Math.PI * 4) * 6) + drivetrainEncoderValues.get("leftDrivetrain");
+        while(current < target){
+            updateEncoderValues();
+            current = drivetrainEncoderValues.get("leftDrivetrain");
+            double speed = target / current * .1;
+            speed = speed < .15 ? .15 : speed;
+            Robot.drivetrain.setLeftDrivetrain(speed);
+            Robot.drivetrain.setRightDrivetrain(speed);
+        }
         Robot.drivetrain.setRightDrivetrain(0);
         Robot.drivetrain.setLeftDrivetrain(0);
     }
@@ -79,11 +100,13 @@ public class AutoCommand {
 
     public static void runDumperLift(boolean up) {
         if (up) {
+            Robot.dumper.setLift(.1);
+            Timer.delay(.1);
             Robot.dumper.setLift(Constants.DUMPER_LIFT_SPEED);
             Timer.delay(.5);
             Robot.dumper.setLift(0);
         } else {
-            Robot.dumper.setLift(-.25);
+            Robot.dumper.setLift(Constants.DUMPER_LOWER_SPEED);
             Timer.delay(.5);
             Robot.dumper.setLift(0);
         }
@@ -91,5 +114,9 @@ public class AutoCommand {
 
     public static void runDumperIntake(double speed) {
         Robot.dumper.setIntake(speed);
+    }
+
+    public static void updateEncoderValues() {
+        drivetrainEncoderValues = Robot.drivetrain.getEncoderValues();
     }
 }
