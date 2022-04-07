@@ -72,6 +72,10 @@ public class Drivetrain extends SubsystemBase{
         return -gyro.getAngle();
     }
 
+    public void resetGyro(){
+        gyro.reset();
+    }
+
     public void setLeftDrivetrain(double speed){
         motorLeft0.set(speed);
         motorLeft1.set(speed);

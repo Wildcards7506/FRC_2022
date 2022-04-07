@@ -68,13 +68,15 @@ public class AutoCommand {
     }
 
     public static void rotate(double angle){
+        Robot.drivetrain.resetGyro();
         double degOff = Math.abs(angle) - Math.abs(Robot.drivetrain.getAngle());
         while(Math.abs(degOff) > 1)
         {
-            double speed = .15 * degOff/(Math.abs(degOff));
-            Robot.drivetrain.setLeftDrivetrain(-speed);
-            Robot.drivetrain.setRightDrivetrain(speed);
+            double speed = .3 * degOff/(Math.abs(degOff));
+            Robot.drivetrain.setLeftDrivetrain(speed);
+            Robot.drivetrain.setRightDrivetrain(-speed);
             degOff = Math.abs(angle) - Math.abs(Robot.drivetrain.getAngle());
+            Robot.drivetrain.updateDashboard();
         }
     }   
 
@@ -98,22 +100,22 @@ public class AutoCommand {
     //     Robot.shooter.setShooterMotor(0);
     // }
 
-    public static void runDumperLift(boolean up) {
-        if (up) {
-            Robot.dumper.setLift(.1);
-            Timer.delay(.1);
-            Robot.dumper.setLift(Constants.DUMPER_LIFT_SPEED);
-            Timer.delay(.5);
-            Robot.dumper.setLift(0);
-        } else {
-            Robot.dumper.setLift(Constants.DUMPER_LOWER_SPEED);
-            Timer.delay(.5);
-            Robot.dumper.setLift(0);
-        }
+    public static void holdDumperLift() {
+        Robot.dumper.setLift(Constants.DUMPER_LIFT_SPEED);
+        Timer.delay(2);
+    }
+
+    public static void runDumperLift() {
+        Robot.dumper.setLift(.2);
+        Timer.delay(.5);
+        Robot.dumper.setLift(Constants.DUMPER_LOWER_SPEED);
+        Timer.delay(2);
+        Robot.dumper.setLift(0);
     }
 
     public static void runDumperIntake(double speed) {
         Robot.dumper.setIntake(speed);
+        Timer.delay(2);
     }
 
     public static void updateEncoderValues() {

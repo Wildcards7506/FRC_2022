@@ -10,7 +10,7 @@ public class DumperOneBallAuto extends SequentialCommandGroup{
         AutoCommand.runDumperIntake(-Constants.DUMPER_INTAKE_SPEED);
         Timer.delay(1);
         AutoCommand.runDumperIntake(0);
-        AutoCommand.drive(-.25, 1);
+        AutoCommand.drive(.25, 1);
     }
     
 }
